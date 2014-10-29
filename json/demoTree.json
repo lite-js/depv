@@ -1,0 +1,121 @@
+{
+    "nodes": [
+        {
+            "id": "amd/define",
+            "name": "amd/define"
+        },
+        {
+            "id": "amd/hooks",
+            "name": "amd/hooks"
+        },
+        {
+            "id": "amd/loader",
+            "name": "amd/loader"
+        },
+        {
+            "id": "amd/normalize",
+            "name": "amd/normalize"
+        },
+        {
+            "id": "amd/plugins",
+            "name": "amd/plugins"
+        },
+        {
+            "id": "core",
+            "name": "core"
+        },
+        {
+            "id": "fmt/date",
+            "name": "fmt/date"
+        },
+        {
+            "id": "fmt/sprintf",
+            "name": "fmt/sprintf"
+        },
+        {
+            "id": "fmt/vsprintf",
+            "name": "fmt/vsprintf"
+        },
+        {
+            "id": "shim/json",
+            "name": "shim/json"
+        },
+        {
+            "id": "amd",
+            "name": "amd"
+        },
+        {
+            "id": "pastry",
+            "name": "pastry"
+        }
+    ],
+    "edges": [
+        {
+            "id": "SamdTamd/hooks",
+            "source": "amd",
+            "target": "amd/hooks"
+        },
+        {
+            "id": "SpastryTamd/hooks",
+            "source": "pastry",
+            "target": "amd/hooks"
+        },
+        {
+            "id": "Samd/hooksTamd/loader",
+            "source": "amd/hooks",
+            "target": "amd/loader"
+        },
+        {
+            "id": "SpastryTamd/loader",
+            "source": "pastry",
+            "target": "amd/loader"
+        },
+        {
+            "id": "Samd/hooksTamd/normalize",
+            "source": "amd/hooks",
+            "target": "amd/normalize"
+        },
+        {
+            "id": "SpastryTamd/normalize",
+            "source": "pastry",
+            "target": "amd/normalize"
+        },
+        {
+            "id": "Samd/hooksTamd/plugins",
+            "source": "amd/hooks",
+            "target": "amd/plugins"
+        },
+        {
+            "id": "Samd/normalizeTamd/plugins",
+            "source": "amd/normalize",
+            "target": "amd/plugins"
+        },
+        {
+            "id": "SpastryTfmt/sprintf",
+            "source": "pastry",
+            "target": "fmt/sprintf"
+        },
+        {
+            "id": "Sfmt/sprintfTfmt/vsprintf",
+            "source": "fmt/sprintf",
+            "target": "fmt/vsprintf"
+        },
+        {
+            "id": "SpastryTfmt/vsprintf",
+            "source": "pastry",
+            "target": "fmt/vsprintf"
+        },
+        {
+            "id": "Sfmt/dateTshim/json",
+            "source": "fmt/date",
+            "target": "shim/json"
+        },
+        {
+            "id": "SpastryTshim/json",
+            "source": "pastry",
+            "target": "shim/json"
+        }
+    ],
+    "circles": [],
+    "seperator": "/"
+}
