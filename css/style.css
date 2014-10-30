@@ -10,6 +10,10 @@ body {
   font-family: monospace, Arial, sans-serf;
   overflow: hidden;
 }
+input {
+  border: 0;
+  padding: 0;
+}
 button {
   font-family: monospace, Arial, sans-serf;
 }
@@ -74,6 +78,12 @@ div#right-panel button {
 }
 div#right-panel:hover {
   opacity: 0.9;
+}
+input#module-q {
+  width: 100%;
+}
+div#namespaces {
+  overflow-y: scroll;
 }
 /* } */
 /* 图定制样式 { */

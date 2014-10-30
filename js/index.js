@@ -165,9 +165,17 @@ define('drawDepTree', [
             }
         });
         $namespaces.append('<button data-ns="all" class="namespace">all</button>');
-        pastry.each(pastry.uniq(result), function(NS) {
+        pastry.each(pastry.uniq(result).sort(function (a, b) {
+            var alc = pastry.lc(a),
+                blc = pastry.lc(b);
+            return alc > blc ? 1 : alc < blc ? -1 : 0;
+        }), function(NS) {
             $namespaces.append('<button data-ns="' + NS + '" class="namespace">' + NS + '</button>');
         });
+
+        // 固定高度 {
+            $namespaces.height($('#right-panel').height() - 100);
+        // }
     }
     function bindEvents () {
         $('div#namespaces').on('click', 'button.namespace', function() {

@@ -7,7 +7,8 @@
  * @description : utils
  */
 
-var fs = require('fs'),
+var
+    fs = require('fs'),
     pastry = require('pastry');
 
 function findCircles (graph) {
@@ -19,13 +20,16 @@ function findCircles (graph) {
 }
 
 function walkFiles (path, processFile) {
-    var dirList = fs.readdirSync(path);
+    var dirList = fs.readdirSync(path),
+        file;
 
     pastry.each(dirList, function(item){
-        if (fs.statSync(path + '/' + item).isFile()){
-            processFile(path + '/' + item);
-        } else if (fs.statSync(path + '/' + item).isDirectory()){
-            walkFiles(path + '/' + item, processFile);
+        file = pastry.sprintf('%s/%s', path, item);
+
+        if (fs.statSync(file).isFile()){
+            processFile(file);
+        } else if (fs.statSync(file).isDirectory()){
+            walkFiles(file, processFile);
         }
     });
 }

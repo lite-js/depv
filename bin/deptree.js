@@ -22,7 +22,7 @@ var
     pastry      = require('pastry'),
     staticSever = require('node-static'),
 
-    utils = require('./deptree/utils.js'),
+    utils = require('./utils.js'),
 
     argv = require('optimist')
         .alias('a', 'analyser')
@@ -51,7 +51,7 @@ function errorTracing (err) {
     }
 }
 
-analyser = require(pastry.sprintf('./deptree/%s.js', argv.analyser));
+analyser = require(pastry.sprintf('./analyser/%s.js', argv.analyser));
 graph    = analyser.analyse(argv);
 
 if (!graph.circles) {
