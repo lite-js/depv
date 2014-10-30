@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>dependency tree</title>
-    <link rel="stylesheet/less" type="text/css" href="/less/style.less">
+    <link rel="stylesheet/less" type="text/css" href="less/style.less">
 </head>
 <body>
     <header class="align-center">
@@ -21,19 +21,19 @@
         </div>
     </div>
 
-    <script src="/lib/jquery.min.js"></script>
-    <script src="/lib/d3.min.js"></script>
-    <script src="/lib/dagre-d3.min.js"></script>
-    <script src="/lib/less.min.js"></script>
-    <script src="/lib/pastry.min.js"></script>
-    <script src="/js/index.js"></script>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/d3.min.js"></script>
+    <script src="lib/dagre-d3.min.js"></script>
+    <script src="lib/less.min.js"></script>
+    <script src="lib/pastry.min.js"></script>
+    <script src="js/index.js"></script>
     <script>
         define([
             'drawDepTree'
         ], function (
             draw
         ) {
-            $.get('/json/resultTree.json', function(tree) {
+            $.get('json/resultTree.json', function(tree) {
 console.log(tree);
                 draw(tree);
             });
