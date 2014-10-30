@@ -1,6 +1,6 @@
 
 /* jshint strict: true, undef: true, unused: true */
-/* global define, d3, dagreD3, $ */
+/* global define, d3, dagreD3, $, document */
 
 define('drawDepTree', [
     'pastry'
@@ -29,6 +29,11 @@ define('drawDepTree', [
                 .rankSep(120)
                 .rankDir('TB');
         // }
+
+    // bug in safari {
+        $('body').height($(document).height());
+        svg.attr('height', $('body').height());
+    // }
 
     function svgTranslate (graph, option) {
         /*

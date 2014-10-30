@@ -24,6 +24,9 @@
     },
 
     "devDependencies" : {
+        "grunt"               : "*",
+        "grunt-contrib-less"  : "*",
+        "grunt-contrib-watch" : "*"
     },
 
     "engines" : {
