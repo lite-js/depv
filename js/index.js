@@ -30,9 +30,10 @@ define('drawDepTree', [
                 .rankDir('TB');
         // }
 
-    // bug in safari {
-        $('body').height($(document).height());
-        svg.attr('height', $('body').height());
+    // bugfix in safari {
+        var fullScreenHeight = $(document).height();
+        $('body').height(fullScreenHeight);
+        svg.attr('height', fullScreenHeight);
     // }
 
     function svgTranslate (graph, option) {
