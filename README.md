@@ -16,7 +16,7 @@ view dependency tree of your modules in browser.
 * js-amd (javascript, AMD)
 * perl
 
-    Expecting more? you can leave us an issue or pull-request.
+Expecting more? you can leave us an issue or pull-request.
 
 ## links
 
