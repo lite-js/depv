@@ -2,7 +2,7 @@
 /* jshint strict: true, undef: true, unused: true */
 /* global define, d3, dagreD3, $, document */
 
-define('drawDepTree', [
+define('depTree', [
     'pastry'
 ], function(
     pastry
@@ -27,11 +27,13 @@ define('drawDepTree', [
             layout = dagreD3.layout()
                 .nodeSep(40)
                 .rankSep(120)
-                .rankDir('TB');
+                .rankDir('TB'),
+        // }
+        // 全屏高度 {
+            fullScreenHeight = $(document).height();
         // }
 
     // bugfix in safari {
-        var fullScreenHeight = $(document).height();
         $('body').height(fullScreenHeight);
         svg.attr('height', fullScreenHeight);
     // }
@@ -58,7 +60,7 @@ define('drawDepTree', [
                     'transform',
                     'translate(' + x + ', ' + y + ')scale(' + scale + ')'
                 );
-            // 图在自动定位后要更新 d3.event 里缓存了的 scale 和 translate，否则会有跳动的问题 {
+            // 图在自动定位后要更新d3.event里缓存了的scale和translate，否则会有跳动的问题 {
                 zoom.translate([x, y]);
                 zoom.scale(scale);
             // }
@@ -196,10 +198,10 @@ define('drawDepTree', [
                 edges: graphData.edges
             });
         });
-        $('input#module-q').keyup(function () {
+        $('input#module-q').change(function () {
             var $input = $(this),
                 filteredNodes = pastry.filter(graphData.nodes, function (node) {
-                    return node.id.indexOf($input.val()) > -1;
+                    return pastry.lc(node.id).indexOf(pastry.lc($input.val())) > -1;
                 });
             draw({
                 nodes: filteredNodes,
@@ -208,18 +210,20 @@ define('drawDepTree', [
         });
     }
 
-    return function (tree) {
-        // 备份图数据 {
-            graphData = tree;
-            processNodes(graphData.nodes);
-        // }
-        // 生成 namespaces 菜单 {
-            initNamespaces();
-            bindEvents();
-        // }
-        // 画图 {
-            draw(graphData);
-        // }
+    return {
+        draw: function (tree) {
+            // 备份图数据 {
+                graphData = tree;
+                processNodes(graphData.nodes);
+            // }
+            // 生成 namespaces 菜单 {
+                initNamespaces();
+                bindEvents();
+            // }
+            // 画图 {
+                draw(graphData);
+            // }
+        }
     };
 });
 

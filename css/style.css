@@ -12,7 +12,7 @@ body {
 }
 input {
   border: 0;
-  padding: 0;
+  padding: 3px 0;
 }
 button {
   font-family: monospace, Arial, sans-serf;
