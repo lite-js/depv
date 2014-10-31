@@ -201,7 +201,9 @@ define('depTree', [
         $('input#module-q').change(function () {
             var $input = $(this),
                 filteredNodes = pastry.filter(graphData.nodes, function (node) {
-                    return pastry.lc(node.id).indexOf(pastry.lc($input.val())) > -1;
+                    var pattern = pastry.lc($input.val());
+                    var nodeId = pastry.lc(node.id);
+                    return RegExp(pattern).test(nodeId);
                 });
             draw({
                 nodes: filteredNodes,
