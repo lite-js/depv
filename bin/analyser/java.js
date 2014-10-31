@@ -35,7 +35,6 @@ function autoAddParents(name) {
     var currentChildName = name;
     var currentParentName = currentChildName.substring(0, idx);
     while (currentParentName && currentParentName.indexOf(".") > 0) {
-        console.log("currentParentName: " + currentParentName + ", currentChildName: " + currentChildName);
         addNode(currentParentName);
         addNode(currentChildName);
         //addEdge(currentChildName, currentParentName);
