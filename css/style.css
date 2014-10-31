@@ -83,7 +83,7 @@ input#module-q {
   width: 100%;
 }
 div#namespaces {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 /* } */
 /* 图定制样式 { */
@@ -107,6 +107,11 @@ g.node div {
   font-family: monospace, Arial, sans-serf;
   font-size: 14px;
   padding: 2px;
+  white-space: nowrap;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
 }
 g.edgePath path {
   stroke: #cccccc;

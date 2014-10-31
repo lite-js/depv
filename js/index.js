@@ -174,7 +174,9 @@ define('drawDepTree', [
         });
 
         // 固定高度 {
-            $namespaces.height($('#right-panel').height() - 100);
+            if ($namespaces.height() + 100 > fullScreenHeight) {
+                $namespaces.height($('#right-panel').height() - 100);
+            }
         // }
     }
     function bindEvents () {
