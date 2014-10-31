@@ -20,7 +20,8 @@
         "madge"       : "*",
         "node-static" : "*",
         "optimist"    : "*",
-        "pastry"      : "*"
+        "pastry"      : "*",
+        "xmlreader"   : "*"
     },
 
     "devDependencies" : {
