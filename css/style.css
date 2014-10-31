@@ -1,3 +1,13 @@
+/* 颜色 { */
+/* 背景 { */
+/* } */
+/* 字体 { */
+/* } */
+/* 内容 { */
+/* } */
+/* } */
+/* 字体 { */
+/* } */
 /* 全局样式 { */
 body {
   width: 100%;
@@ -12,7 +22,7 @@ body {
 }
 input {
   border: 0;
-  padding: 0;
+  padding: 3px 0;
 }
 button {
   font-family: monospace, Arial, sans-serf;
