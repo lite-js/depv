@@ -10,6 +10,7 @@ function addNode(name) {
     if (!deps[name]) {
         deps[name] = 1;
         nodes.push({id: name, name: name})
+        autoAddParents(name);
     } else {
         deps[name] += 1;
     }
@@ -26,6 +27,23 @@ function addEdge(source, target) {
         edges.push({id: edgeKey, source: source, target: target});
     } else {
         edgeKeys[edgeKey] += 1;
+    }
+}
+
+function autoAddParents(name) {
+    var idx = name.lastIndexOf(".");
+    var currentChildName = name;
+    var currentParentName = currentChildName.substring(0, idx);
+    while (currentParentName && currentParentName.indexOf(".") > 0) {
+        console.log("currentParentName: " + currentParentName + ", currentChildName: " + currentChildName);
+        addNode(currentParentName);
+        addNode(currentChildName);
+        //addEdge(currentChildName, currentParentName);
+        addEdge(currentParentName, currentChildName);
+
+        currentChildName = currentParentName;
+        idx = currentChildName.lastIndexOf(".");
+        currentParentName = currentChildName.substring(0, idx);
     }
 }
 
@@ -70,6 +88,7 @@ function parsePom(pomFilePath, projectName) {
         
         addNode(name);
         addEdge(projectName, name);
+        //addEdge(name, projectName);
         
         for (var i in dependencies) {
             var dependency = dependencies[i];
@@ -86,7 +105,9 @@ function parsePom(pomFilePath, projectName) {
 
             addNode(groupId);
             addNode(artifactId);
-            addEdge(name, groupId);
+            //addEdge(name, groupId);
+            addEdge(name, artifactId);
+            //addEdge(groupId, name);
             addEdge(groupId, artifactId);
         }
     });
