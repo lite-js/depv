@@ -35,6 +35,9 @@
         ], function (
             depTree
         ) {
+            $.ajaxSetup ({
+                cache: false
+            });
             $.get('json/resultTree.json', function(tree) {
                 depTree.draw(tree);
             });
