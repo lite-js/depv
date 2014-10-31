@@ -21,7 +21,7 @@ header span.ribbon-inner {
 header span.left-tail, header span.right-tail {
   width: 19px;
   height: 10px;
-  background: transparent url(../images/ribbon-tail-sprite-2x.png) 0 0 no-repeat;
+  background: transparent url(../img/ribbon-tail-sprite-2x.png) 0 0 no-repeat;
   bottom: -10px;
 }
 
@@ -42,7 +42,7 @@ section#downloads {
   height: 171px;
   width: 602px;
   margin: 51px auto -250px;
-  background: transparent url(../images/shield.png) center 0 no-repeat;
+  background: transparent url(../img/shield.png) center 0 no-repeat;
 }
 
 section#downloads a {
@@ -50,7 +50,7 @@ section#downloads a {
 }
 
 span.banner-fix {
-  background: transparent url(../images/shield-fallback.png) center top no-repeat;
+  background: transparent url(../img/shield-fallback.png) center top no-repeat;
   height: 31px;
   width: 640px;
   top: 20px;
@@ -68,7 +68,7 @@ footer {
 footer span.left-tail, footer span.right-tail {
   width: 23px;
   height: 126px;
-  background: transparent url(../images/small-ribbon-tail-sprite-2x.png) 0 0 no-repeat;
+  background: transparent url(../img/small-ribbon-tail-sprite-2x.png) 0 0 no-repeat;
   top: -126px;
 }
 
@@ -105,7 +105,7 @@ footer span.ribbon-inner a {
 }
 
 footer span.octocat {
-  background: transparent url(../images/octocat-2x.png) 0 0 no-repeat;
+  background: transparent url(../img/octocat-2x.png) 0 0 no-repeat;
   width: 60px;
   height: 60px;
   margin: 20px auto 0;
@@ -117,7 +117,7 @@ body {
 
 ul li {
   padding-left: 20px;
-  background: transparent url(../images/chevron-2x.png) left 15px no-repeat;
+  background: transparent url(../img/chevron-2x.png) left 15px no-repeat;
 }
 
 table {
@@ -145,10 +145,10 @@ img {
 }
 
 blockquote {
-  background: transparent url('../images/blockquote-gfx-2x.png') 0 8px no-repeat;
+  background: transparent url('../img/blockquote-gfx-2x.png') 0 8px no-repeat;
 }
 
 hr {
   height: 42px;
-  background: transparent url('../images/hr-2x.jpg') center center repeat-x;
+  background: transparent url('../img/hr-2x.jpg') center center repeat-x;
 }

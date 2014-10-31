@@ -1,0 +1,46 @@
+/* 图定制样式 { */
+    g {
+        &>.type-default > rect {
+            fill: @color-content-error;
+        }
+        &>.type-core > rect {
+            /* fill: @color-content-warning; */
+            fill: @color-content-success;
+        }
+        &>.type-common > rect {
+            fill: @color-content-primary;
+        }
+    }
+
+    g.node {
+        rect {
+            overflow     : hidden;
+            stroke       : @color-bg-header;
+            stroke-width : 1px;
+        }
+        div {
+            color            : @color-font-hightlight;
+            font-family      : @font-family-common;
+            font-size        : 14px;
+            padding          : 2px;
+            white-space      : nowrap;
+            word-break       : keep-all;
+            text-overflow    : ellipsis;
+            -o-text-overflow : ellipsis;
+            overflow         : hidden;
+
+        }
+    }
+    g.edgePath {
+        path {
+            stroke       : @color-font-main;
+            stroke-width : 1px;
+            fill         : none;
+            &:hover {
+                stroke       : @color-content-warning;
+                stroke-width : 2px;
+                fill         : none;
+            }
+        }
+    }
+/* } */
