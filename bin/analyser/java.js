@@ -10,7 +10,7 @@ function addNode(name) {
     if (!deps[name]) {
         deps[name] = 1;
         nodes.push({id: name, name: name})
-        autoAddParents(name);
+       // autoAddParents(name);
     } else {
         deps[name] += 1;
     }
@@ -62,13 +62,13 @@ function parsePom(pomFilePath, projectName) {
     // cleanup pom xml
     pom = cleanupXml(pom);
     
-    var name = "";
+    var moduleName = "";
     xmlreader.read(pom, function(err, data) {
         if (err) {
             console.log("error: " + err);
             return;
         }
-        name = data.project.artifactId.text();
+        moduleName = data.project.artifactId.text();
         //var dependencies = data.project.dependencyManagement.dependencies.dependency.array;
         // ignore the parent-pom
         if (data.project.dependencyManagement) {
@@ -84,9 +84,10 @@ function parsePom(pomFilePath, projectName) {
         if (!dependencies) {
             dependencies = data.project.dependencies;
         }
-        
-        addNode(name);
-        addEdge(projectName, name);
+
+        var fullModuleName = projectName + "/" + moduleName;
+        addNode(fullModuleName);
+        //addEdge(projectName, fullModuleName);
         //addEdge(name, projectName);
         
         for (var i in dependencies) {
@@ -102,12 +103,10 @@ function parsePom(pomFilePath, projectName) {
             }
             var artifactId = dependency.artifactId.text();
 
-            addNode(groupId);
-            addNode(artifactId);
-            //addEdge(name, groupId);
-            addEdge(name, artifactId);
-            //addEdge(groupId, name);
-            addEdge(groupId, artifactId);
+            //addNode(groupId);
+            var fullId = groupId + "/" + artifactId;
+            addNode(fullId);
+            addEdge(fullModuleName, fullId);
         }
     });
 }
@@ -144,7 +143,7 @@ function analyseProject(basePath) {
     projectName = "com.alipay." + projectName;
     var allPomFilePaths = findAllPomFiles(basePath);
 
-    addNode(projectName);
+    //addNode(projectName);
     for (var i in allPomFilePaths) {
         var pomFilePath = allPomFilePaths[i];
         parsePom(pomFilePath, projectName);
