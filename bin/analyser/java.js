@@ -10,6 +10,7 @@ function addNode(name) {
     if (!deps[name]) {
         deps[name] = 1;
         nodes.push({id: name, name: name})
+       // autoAddParents(name);
     } else {
         deps[name] += 1;
     }
@@ -29,6 +30,22 @@ function addEdge(source, target) {
     }
 }
 
+function autoAddParents(name) {
+    var idx = name.lastIndexOf(".");
+    var currentChildName = name;
+    var currentParentName = currentChildName.substring(0, idx);
+    while (currentParentName && currentParentName.indexOf(".") > 0) {
+        addNode(currentParentName);
+        addNode(currentChildName);
+        //addEdge(currentChildName, currentParentName);
+        addEdge(currentParentName, currentChildName);
+
+        currentChildName = currentParentName;
+        idx = currentChildName.lastIndexOf(".");
+        currentParentName = currentChildName.substring(0, idx);
+    }
+}
+
 function cleanupXml(content) {
     // nodejs xmlreader module has a bug that you cann't have a node named parent in xml
     var idx1 = content.indexOf("<parent>");
@@ -45,13 +62,13 @@ function parsePom(pomFilePath, projectName) {
     // cleanup pom xml
     pom = cleanupXml(pom);
     
-    var name = "";
+    var moduleName = "";
     xmlreader.read(pom, function(err, data) {
         if (err) {
             console.log("error: " + err);
             return;
         }
-        name = data.project.artifactId.text();
+        moduleName = data.project.artifactId.text();
         //var dependencies = data.project.dependencyManagement.dependencies.dependency.array;
         // ignore the parent-pom
         if (data.project.dependencyManagement) {
@@ -67,9 +84,11 @@ function parsePom(pomFilePath, projectName) {
         if (!dependencies) {
             dependencies = data.project.dependencies;
         }
-        
-        addNode(name);
-        addEdge(projectName, name);
+
+        var fullModuleName = projectName + "/" + moduleName;
+        addNode(fullModuleName);
+        //addEdge(projectName, fullModuleName);
+        //addEdge(name, projectName);
         
         for (var i in dependencies) {
             var dependency = dependencies[i];
@@ -84,10 +103,10 @@ function parsePom(pomFilePath, projectName) {
             }
             var artifactId = dependency.artifactId.text();
 
-            addNode(groupId);
-            addNode(artifactId);
-            addEdge(name, groupId);
-            addEdge(groupId, artifactId);
+            //addNode(groupId);
+            var fullId = groupId + "/" + artifactId;
+            addNode(fullId);
+            addEdge(fullModuleName, fullId);
         }
     });
 }
@@ -124,7 +143,7 @@ function analyseProject(basePath) {
     projectName = "com.alipay." + projectName;
     var allPomFilePaths = findAllPomFiles(basePath);
 
-    addNode(projectName);
+    //addNode(projectName);
     for (var i in allPomFilePaths) {
         var pomFilePath = allPomFilePaths[i];
         parsePom(pomFilePath, projectName);
