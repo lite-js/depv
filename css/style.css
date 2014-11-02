@@ -156,6 +156,9 @@ g.edgePath path:hover {
 }
 /* } */
 /* components { */
+.context-menu-list {
+  color: black;
+}
 .toolTip {
   font-size: 12px;
   position: absolute;

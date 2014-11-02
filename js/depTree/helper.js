@@ -3,10 +3,12 @@
 
 define([
     './CONST',
-    'pastry'
+    'pastry',
+    'jquery'
 ], function (
     CONST,
-    pastry
+    pastry,
+    $
 ) {
     'use strict';
 
@@ -14,7 +16,44 @@ define([
         /*
          * @description: 加上 helper 函数
          */
+
         pastry.extend(instance, {
+            getIdFromNode: function (node) {
+                return $(node).attr('id').replace(CONST.NS.node, '');
+            },
+            addNodes: function (nodes) {
+                /*
+                 * @description : 添加节点
+                 * @parameter   : {Array} nodes, 待添加节点
+                 */
+                var graph = instance.graph;
+
+                pastry.each(nodes, function(node) {
+                    if (node.id && !graph.hasNode(node.id)) {
+                        graph.addNode(node.id,  node);
+                    }
+                });
+                return instance;
+            },
+            addEdges: function (edges) {
+                /*
+                 * @description : 添加连线
+                 * @parameter   : {Array} edges, 待添加连线
+                 */
+                var graph = instance.graph;
+
+                pastry.each(edges, function(edge) {
+                    if (graph.hasNode(edge.source) && graph.hasNode(edge.target)) {
+                        /*
+                         * 过滤了不存在的节点的连线
+                         */
+                        if (!graph.hasEdge(edge.id)) {
+                            graph.addEdge(edge.id, edge.source, edge.target);
+                        }
+                    }
+                });
+                return instance;
+            },
             queryNode: function (query) {
                 /*
                  * @description : 搜索节点

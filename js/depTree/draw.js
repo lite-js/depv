@@ -6,13 +6,11 @@ define([
     'd3',
     'dagreD3',
     'pastry'
-    // 'jquery'
 ], function (
     CONST,
     d3,
     dagreD3,
     pastry
-    // $
 ) {
     'use strict';
 
@@ -21,44 +19,32 @@ define([
             /*
              * @description: 画图
              */
-            if (!data) {
-                data = {
-                    nodes: instance.nodes,
-                    edges: instance.edges
-                };
+
+            var d3Svg        = instance.d3Svg,
+                graph        = instance.graph,
+                renderer     = instance.renderer,
+                oldDrawNodes = renderer.drawNodes(),
+                oldDrawEdges = renderer.drawEdgePaths();
+
+
+            if (data && pastry.isArray(data.nodes)) {
+                // 清除旧图 {
+                    graph = instance.graph = new dagreD3.Digraph();
+                // }
+                // 加 nodes {
+                    instance.addNodes(data.nodes);
+                // }
+                // 加 edges {
+                    instance.addEdges(data.edges);
+                // }
             }
-            var d3Svg = instance.d3Svg,
-                graph = instance.graph = new dagreD3.Digraph();
-            // 加 node {
-                pastry.each(data.nodes, function(node) {
-                    if (node.id) {
-                        graph.addNode(node.id,  node);
-                    }
-                });
-            // }
-            // 加 edge {
-                pastry.each(data.edges, function(edge) {
-                    if (graph.hasNode(edge.source) && graph.hasNode(edge.target)) {
-                        /*
-                         * 过滤了不存在的节点的连线
-                         */
-                        if (!graph.hasEdge(edge.id)) {
-                            graph.addEdge(edge.id, edge.source, edge.target);
-                        }
-                    }
-                });
-            // }
-            // 画图 {
-                var renderer = instance.render = new dagreD3.Renderer(),
-                    oldDrawNodes = renderer.drawNodes(),
-                    oldDrawEdges = renderer.drawEdgePaths();
-            // }
+
             // 定制 node {
-                renderer.drawNodes(function(graph, root) {
-                    var svgNodes = oldDrawNodes(graph, root);
+                renderer.drawNodes(function(g, root) {
+                    var svgNodes = oldDrawNodes(g, root);
                     svgNodes.each(function(u) {
                         var d3Node = instance.d3NodeById[u] = d3.select(this),
-                            node   = graph.node(u);
+                            node   = g.node(u);
                         if (node.nodeclass) {
                             d3Node.classed(node.nodeclass, true);
                         }
@@ -88,7 +74,6 @@ define([
                     .run(graph, d3Svg);
 
                 var d3G = instance.d3G = d3Svg.select('g'),
-
                     zoomed = function () {
                         d3G
                             .attr(

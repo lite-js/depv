@@ -13,11 +13,11 @@ require([
     $,
     depTree
 ) {
-    console.log($);
     $.ajaxSetup ({
         cache: false
     });
     $.get('json/demoTree.json', function(tree) {
-        depTree.init(tree).draw();
+        depTree.init(tree).draw(tree);
     });
 });
+

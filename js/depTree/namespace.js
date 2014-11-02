@@ -54,6 +54,7 @@ define([
                     return node.id.indexOf(ns) === 0;
                 });
             }
+
             instance.draw({
                 nodes: filteredNodes,
                 edges: instance.edges

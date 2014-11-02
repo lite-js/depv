@@ -1,5 +1,5 @@
 /* jshint strict: true, undef: true, unused: true */
-/* global define, console */
+/* global define */
 
 define([
     'pastry'
@@ -33,8 +33,8 @@ define([
             });
         });
     }
-    function processEdges (edges) {
-        console.log(edges);
+    function processEdges (/* edges */) {
+        // console.log(edges);
     }
 
     function run (instance) {

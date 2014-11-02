@@ -8,6 +8,7 @@ define([
     'pastry',
     './depTree/bugfix',
     './depTree/contextMenu',
+    './depTree/expandNode',
     './depTree/filter',
     './depTree/helper',
     './depTree/namespace',
@@ -22,6 +23,7 @@ define([
     pastry,
     bugfix,
     contextMenu,
+    expandNode,
     filter,
     helper,
     namespace,
@@ -46,6 +48,7 @@ define([
                 d3NodeById : {},
                 d3Svg      : d3.select('svg'),
                 graph      : null,
+                renderer   : new dagreD3.Renderer(),
                 zoom       : null,
                 layout: dagreD3.layout()
                     .nodeSep(40)
@@ -60,6 +63,7 @@ define([
             filter.run(instance);
             namespace.run(instance);
             helper.run(instance);
+            expandNode.run(instance);
             toolTip.run(instance);
             contextMenu.run(instance);
             bugfix.run(instance);

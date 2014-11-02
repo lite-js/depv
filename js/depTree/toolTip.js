@@ -3,12 +3,12 @@
 
 define([
     '../../component/toolTip',
-    './CONST',
+    // './CONST',
     // 'pastry',
     'jquery'
 ], function (
     toolTip,
-    CONST,
+    // CONST,
     // pastry,
     $
 ) {
@@ -22,19 +22,15 @@ define([
             $toolTarget,
             targetNode;
 
-console.log($svg);
-
         $svg.on('mouseover', '.node', function(e){
             if (e.target.nodeName.toUpperCase() !== 'G') {
                 $toolTarget = $($(e.target).parents('.node')[0]);
             } else {
                 return;
             }
-console.log($toolTarget);
             targetNode = instance.queryNode({
-                id: $toolTarget.attr('id').replace(CONST.NS.node, '')
+                id: instance.getIdFromNode($toolTarget)
             });
-console.log(targetNode);
             toolTip.show(
                 targetNode.name,
                 $toolTarget[0], {
