@@ -2,9 +2,11 @@
 /* global define */
 
 define([
+    '../../component/fmt/sprintf',
     'pastry',
     'jquery'
 ], function (
+    sprintf,
     pastry,
     $
 ) {
@@ -25,7 +27,7 @@ define([
             }
         });
         $namespaces.append(
-            '<button data-ns="all" class="namespace">all</button>'
+            '<span data-ns="all" class="namespace" title="all">all</span>'
         );
         pastry.each(pastry.uniq(result).sort(function (a, b) {
             var alc = pastry.lc(a),
@@ -33,13 +35,15 @@ define([
             return alc > blc ? 1 : alc < blc ? -1 : 0;
         }), function(NS) {
             $namespaces.append(
-                '<button data-ns="' + NS + '" class="namespace">' +
-                NS +
-                '</button>'
+                sprintf('<span data-ns="%s" class="namespace" title="%s">%s</span>',
+                    NS,
+                    NS,
+                    NS
+                )
             );
         });
 
-        $namespaces.on('click', 'button.namespace', function() {
+        $namespaces.on('click', '.namespace', function() {
             var $btn = $(this),
                 ns = $btn.data('ns'),
                 filteredNodes = [];

@@ -89,10 +89,6 @@ div#right-panel hr {
   border-bottom: 1px dashed #cccccc;
   background: #333333;
 }
-div#right-panel button {
-  display: block;
-  width: 100%;
-}
 div#right-panel:hover {
   opacity: 0.9;
 }
@@ -101,6 +97,22 @@ input#module-q {
 }
 div#namespaces {
   overflow-y: auto;
+}
+div#namespaces .namespace {
+  background-color: white;
+  border-radius: .25em;
+  color: black;
+  cursor: pointer;
+  display: block;
+  font-size: 75%;
+  margin: 3px 0;
+  max-width: 120px;
+  padding: 2px;
+  white-space: nowrap;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
 }
 /* } */
 /* 图定制样式 { */
