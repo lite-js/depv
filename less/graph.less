@@ -18,17 +18,14 @@
             stroke       : @color-bg-header;
             stroke-width : 1px;
         }
-        div {
+        div.nodeLabel {
+            display          : inline-block;
+            max-width        : 120px;
             color            : @color-font-hightlight;
             font-family      : @font-family-common;
             font-size        : 14px;
-            padding          : 2px;
-            white-space      : nowrap;
-            word-break       : keep-all;
-            text-overflow    : ellipsis;
-            -o-text-overflow : ellipsis;
-            overflow         : hidden;
-
+            padding          : 4px;
+            .limit-len
         }
     }
     g.edgePath {

@@ -26,22 +26,7 @@
     <script src="lib/jquery-contextMenu/min.js"></script>
     <script src="lib/d3.min.js"></script>
     <script src="lib/dagre-d3.min.js"></script>
-    <!-- <script src="lib/less.min.js"></script> -->
     <script src="lib/pastry.min.js"></script>
-    <script src="js/depTree.js"></script>
-    <script>
-        define([
-            'depTree'
-        ], function (
-            depTree
-        ) {
-            $.ajaxSetup ({
-                cache: false
-            });
-            $.get('json/resultTree.json', function(tree) {
-                depTree.draw(tree);
-            });
-        });
-    </script>
+    <script src="lib/require.min.js" data-main='js/result.js'></script>
 </body>
 </html>

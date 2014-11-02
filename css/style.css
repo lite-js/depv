@@ -53,6 +53,13 @@ svg {
 .align-center {
   text-align: center;
 }
+.limit-len {
+  white-space: nowrap;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
+}
 /* } */
 /* 图以外的样式 { */
 div#canvas {
@@ -112,11 +119,13 @@ g.node rect {
   stroke: #000000;
   stroke-width: 1px;
 }
-g.node div {
+g.node div.nodeLabel {
+  display: inline-block;
+  max-width: 120px;
   color: #ffffff;
   font-family: monospace, Arial, sans-serf;
   font-size: 14px;
-  padding: 2px;
+  padding: 4px;
   white-space: nowrap;
   word-break: keep-all;
   text-overflow: ellipsis;
@@ -132,5 +141,120 @@ g.edgePath path:hover {
   stroke: #efc028;
   stroke-width: 2px;
   fill: none;
+}
+/* } */
+/* components { */
+.toolTip {
+  font-size: 12px;
+  position: absolute;
+  padding: 5px;
+  margin-left: -5px;
+  margin-top: -5px;
+  box-sizing: border-box;
+  z-index: 100000;
+  opacity: 0.8;
+}
+.toolTip-inner {
+  background-color: #000;
+  color: #FFF;
+  max-width: 200px;
+  padding: 5px 8px 4px 8px;
+  text-align: center;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+/* Rounded corners */
+.toolTip-inner {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+.toolTip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  border: 5px dashed #000;
+}
+/* Rules to colour arrows */
+.toolTip-arrow-n {
+  border-bottom-color: #000;
+}
+.toolTip-arrow-s {
+  border-top-color: #000;
+}
+.toolTip-arrow-e {
+  border-left-color: #000;
+}
+.toolTip-arrow-w {
+  border-right-color: #000;
+}
+.toolTip-n .toolTip-arrow {
+  top: 0px;
+  left: 50%;
+  margin-left: -5px;
+  border-bottom-style: solid;
+  border-top: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.toolTip-nw .toolTip-arrow {
+  top: 0;
+  left: 10px;
+  border-bottom-style: solid;
+  border-top: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.toolTip-ne .toolTip-arrow {
+  top: 0;
+  right: 10px;
+  border-bottom-style: solid;
+  border-top: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.toolTip-s .toolTip-arrow {
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-top-style: solid;
+  border-bottom: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.toolTip-sw .toolTip-arrow {
+  bottom: 0;
+  left: 10px;
+  border-top-style: solid;
+  border-bottom: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.toolTip-se .toolTip-arrow {
+  bottom: 0;
+  right: 10px;
+  border-top-style: solid;
+  border-bottom: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.toolTip-e .toolTip-arrow {
+  right: 0;
+  top: 50%;
+  margin-top: -5px;
+  border-left-style: solid;
+  border-right: none;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+.toolTip-w .toolTip-arrow {
+  left: 0;
+  top: 50%;
+  margin-top: -5px;
+  border-right-style: solid;
+  border-left: none;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
 }
 /* } */
