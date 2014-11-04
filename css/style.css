@@ -133,16 +133,12 @@ g.node rect {
 }
 g.node div.nodeLabel {
   display: inline-block;
-  max-width: 120px;
+  /* max-width        : 120px; */
   color: #ffffff;
   font-family: monospace, Arial, sans-serf;
   font-size: 14px;
   padding: 4px;
-  white-space: nowrap;
-  word-break: keep-all;
-  text-overflow: ellipsis;
-  -o-text-overflow: ellipsis;
-  overflow: hidden;
+  /* .limit-len */
 }
 g.edgePath path {
   stroke: #cccccc;
