@@ -138,7 +138,11 @@ g.node div.nodeLabel {
   font-family: monospace, Arial, sans-serf;
   font-size: 14px;
   padding: 4px;
-  /* .limit-len */
+  white-space: nowrap;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
 }
 g.edgePath path {
   stroke: #cccccc;
