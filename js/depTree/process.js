@@ -8,15 +8,18 @@ define([
 ) {
     'use strict';
 
-    function classById (id) {
+    function classByType (type) {
+        if (!type) {
+            return 'type-default';
+        }
         switch (true) {
-            case /^pastry/.test(id):
+            case /^pastry/.test(type):
                 return 'type-core';
-            case /^amd/.test(id):
-                return id === 'amd/define' ? 'type-default' : 'type-core';
-            case /shim\//.test(id):
+            case /^amd/.test(type):
+                return type === 'amd/define' ? 'type-default' : 'type-core';
+            case /shim\//.test(type):
                 return 'type-common';
-            case /fmt\//.test(id):
+            case /fmt\//.test(type):
                 return 'type-common';
             default:
                 return 'type-default';
@@ -29,7 +32,7 @@ define([
                 label     : '<div class="nodeLabel">' + node.name + '</div>',
                 rx        : 3,
                 ry        : 3,
-                nodeclass : classById(node.id)
+                nodeclass : classByType(node.type)
             });
         });
     }
