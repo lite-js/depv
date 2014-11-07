@@ -8,7 +8,7 @@ view dependency tree of your modules in browser.
 
 * dependency tree of pastry:
 
-![dependency-tree-of-pastry](https://cloud.githubusercontent.com/assets/1655789/4856844/eaebed4a-60c3-11e4-92df-a46b59666e47.png)
+![dependency-tree-of-pastry](https://cloud.githubusercontent.com/assets/1655789/4948974/c6959bae-6685-11e4-86f0-3bac8fbe8545.png)
 
 ## supported languages
 
