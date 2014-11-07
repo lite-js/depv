@@ -2,9 +2,10 @@
 define('jquery', function () {
     return $;
 });
-define('d3'      , d3      );
-define('dagreD3' , dagreD3 );
-define('pastry'  , pastry  );
+define('d3'       , d3       );
+define('dagreD3'  , dagreD3  );
+define('pastry'   , pastry   );
+define('CryptoJS' , CryptoJS );
 
 require([
     'jquery',

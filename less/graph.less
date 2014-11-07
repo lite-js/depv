@@ -1,15 +1,11 @@
 /* 图定制样式 { */
     g {
-        &>.type-default > rect {
-            fill: @color-content-error;
-        }
-        &>.type-core > rect {
-            /* fill: @color-content-warning; */
-            fill: @color-content-success;
-        }
-        &>.type-common > rect {
-            fill: @color-content-primary;
-        }
+        &>.type-error      > rect { fill: @color-type-error;      }
+        &>.type-hightlight > rect { fill: @color-type-hightlight; }
+        &>.type-info       > rect { fill: @color-type-info;       }
+        &>.type-primary    > rect { fill: @color-type-primary;    }
+        &>.type-success    > rect { fill: @color-type-success;    }
+        &>.type-warning    > rect { fill: @color-type-warning;    }
     }
 
     g.node {
@@ -17,11 +13,12 @@
             overflow     : hidden;
             stroke       : @color-bg-header;
             stroke-width : 1px;
+            /* fill         : @color-type-primary; */
         }
         div.nodeLabel {
             display          : inline-block;
             /* max-width        : 120px; */
-            color            : @color-font-hightlight;
+            /* color            : @color-font-hightlight; */
             font-family      : @font-family-common;
             font-size        : 14px;
             padding          : 4px;
@@ -34,7 +31,7 @@
             stroke-width : 1px;
             fill         : none;
             &:hover {
-                stroke       : @color-content-warning;
+                stroke       : @color-type-warning;
                 stroke-width : 2px;
                 fill         : none;
             }

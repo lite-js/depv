@@ -8,22 +8,23 @@ define([
 ) {
     'use strict';
 
-    function classByType (type) {
-        if (!type) {
-            return 'type-default';
-        }
-        switch (true) {
-            case /^pastry/.test(type):
-                return 'type-core';
-            case /^amd/.test(type):
-                return type === 'amd/define' ? 'type-default' : 'type-core';
-            case /shim\//.test(type):
-                return 'type-common';
-            case /fmt\//.test(type):
-                return 'type-common';
-            default:
-                return 'type-default';
-        }
+    function classByType (/* type */) {
+        // if (!type) {
+        //     return 'type-default';
+        // }
+        // switch (true) {
+        //     case /^pastry/.test(type):
+        //         return 'type-core';
+        //     case /^amd/.test(type):
+        //         return type === 'amd/define' ? 'type-default' : 'type-core';
+        //     case /shim\//.test(type):
+        //         return 'type-common';
+        //     case /fmt\//.test(type):
+        //         return 'type-common';
+        //     default:
+        //         return 'type-default';
+        // }
+        return '';
     }
 
     function processNodes (nodes) {

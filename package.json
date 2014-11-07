@@ -16,7 +16,7 @@
         "url" : "https://github.com/leungwensen/deptree/issues"
     },
 
-    "dependencies"    : {
+    "dependencies" : {
         "madge"       : "*",
         "node-static" : "*",
         "optimist"    : "*",
@@ -25,9 +25,10 @@
     },
 
     "devDependencies" : {
-        "grunt"               : "*",
-        "grunt-contrib-less"  : "*",
-        "grunt-contrib-watch" : "*"
+        "gulp"        : "*",
+        "gulp-less"   : "*",
+        "gulp-util"   : "*",
+        "multistream" : "*"
     },
 
     "engines" : {
@@ -52,5 +53,6 @@
     },
 
     "scripts" : {
+        "test": "gulp watch"
     }
 }

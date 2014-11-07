@@ -22,8 +22,13 @@ define([
         $namespaces.html('');
         pastry.each(instance.nodes, function(node) {
             id = node.id;
+
             if (pastry.isString(id)) {
-                result.push(id.split(seperator)[0]);
+                var ns = id.split(seperator)[0];
+                if (!node.type) {
+                    node.type = ns;
+                }
+                result.push(ns);
             }
         });
         $namespaces.append(

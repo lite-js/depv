@@ -3,11 +3,15 @@
 
 define([
     './CONST',
+    './stylingEdges',
+    './stylingNodes',
     'd3',
     'dagreD3',
     'pastry'
 ], function (
     CONST,
+    stylingEdges,
+    stylingNodes,
     d3,
     dagreD3,
     pastry
@@ -87,8 +91,18 @@ define([
                     .on('zoom', zoomed);
                 d3Svg.call(instance.zoom);
             // }
+
+            // 定制 node {
+                stylingNodes(instance);
+            // }
+            // 定制 edge {
+                stylingEdges(instance);
+            // }
+
             // 居中 {
-                instance.transition(instance.getCenterXY());
+                instance.transition(pastry.extend({
+                    duration: 0
+                }, instance.getCenterXY()));
             // }
         };
     }
