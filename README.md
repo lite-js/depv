@@ -35,6 +35,7 @@ view dependency tree of your modules in browser.
 * go
 * java (thanks to @xumingming)
 * js-amd (javascript, AMD)
+* js-cjs (javascript, CommonJS)
 * perl
 
 Expecting more? you can leave us an issue or pull-request.
