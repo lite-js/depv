@@ -23,6 +23,13 @@ Expecting more? you can leave us an issue or pull-request.
 * [hompage](http://leungwensen.github.io/deptree/)
 * [demo](http://leungwensen.github.io/deptree/demo)
 
+## usage
+
+    $ git clone https://github.com/leungwensen/deptree.git
+    $ cd deptree
+    $ npm install
+    $ ./bin/deptree.js -d node_modules/pastry/src -a js-amd
+
 ## [contributors](https://github.com/leungwensen/deptree/graphs/contributors)
 
 ## [wiki](https://github.com/leungwensen/deptree/wiki)
