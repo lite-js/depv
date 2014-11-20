@@ -25,10 +25,11 @@
     },
 
     "devDependencies" : {
-        "gulp"        : "*",
-        "gulp-less"   : "*",
-        "gulp-util"   : "*",
-        "multistream" : "*"
+        "grunt"                : "*" ,
+        "grunt-contrib-less"   : "*" ,
+        "grunt-contrib-jshint" : "*" ,
+        "grunt-contrib-watch"  : "*" ,
+        "pastry"               : "*"
     },
 
     "engines" : {

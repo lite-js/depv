@@ -10,6 +10,30 @@ module.exports = function () {
     grunt.initConfig({
         pkg: pkg,
 
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc'
+            },
+            files: {
+                gruntfile: [
+                    'Gruntfile.js'
+                ],
+                bin: [
+                    'bin/js/*.js'
+                ],
+                json: [
+                    'doc/json/*.json',
+                    'package.json'
+                ],
+                src: [
+                    'src/**/*.js'
+                ],
+                spec: [
+                    'spec/*.js'
+                ]
+            }
+        },
+
         less: {
             development: {
                 files: {
@@ -30,8 +54,15 @@ module.exports = function () {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-less'     );
-    grunt.loadNpmTasks('grunt-contrib-watch'    );
+    pastry.each([
+        'less',
+        'jshint',
+        'watch'
+    ], function (task) {
+        grunt.loadNpmTasks('grunt-contrib-' + task);
+    });
 
-    grunt.registerTask('default', [ ]);
+    grunt.registerTask('default', [
+        'jshint'
+    ]);
 };

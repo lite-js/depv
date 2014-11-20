@@ -10,10 +10,11 @@ var
     seperator = '/',
 
     re = {
-        fileFilter : /\.go$/i,
-        fileIgnore : /_test\.go$/i,
-        package    : /^package\s+(.+)\s*/,
-        depsMatch  : /import\s+\(([^\)]+)\)/gm
+        fileFilter    : /\.go$/i,
+        fileIgnore    : /_test\.go$/i,
+        package       : /^package\s+(.+)\s*/,
+        multiLineDeps : /import\s+\(([^\)]+)\)/gm,
+        inlineDeps    : /[^'"]\s*import\s+['"]([^\'")]+)['"]/gm
     },
 
     analyse = function (option) {
@@ -21,6 +22,7 @@ var
             fileContent,
             packageResult,
             depsResult,
+            inlineDepsResult,
             node,
             nodes      = [],
             edges      = [],
@@ -53,6 +55,7 @@ var
             pastry.each(pkgs, function (pkg) {
                 pkg = pastry.trim(pkg);
                 if (!pastry.some([
+                    '\\',
                     '(',
                     ')',
                     'import',
@@ -76,7 +79,15 @@ var
                     node = packageResult[1];
                     addNodeById(node);
 
-                    depsResult = fileContent.match(re.depsMatch);
+                    depsResult = fileContent.match(re.multiLineDeps);
+
+                    inlineDepsResult = fileContent.match(re.inlineDeps);
+
+                    depsResult = depsResult ? depsResult : inlineDepsResult ? inlineDepsResult : [];
+                    if (inlineDepsResult) {
+                        depsResult.concat(inlineDepsResult);
+                    }
+                    depsResult = pastry.uniq(depsResult);
 
                     pastry.each(depsResult, function (deps) {
                         var depPkgs = getDepPackages(deps);
