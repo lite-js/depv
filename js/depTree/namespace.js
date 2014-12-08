@@ -24,7 +24,7 @@ define([
             id = node.id;
 
             if (pastry.isString(id)) {
-                var ns = id.split(seperator)[0];
+                var ns = pastry.lc(id.split(seperator)[0]);
                 if (!node.type) {
                     node.type = ns;
                 }
@@ -56,7 +56,7 @@ define([
                 filteredNodes = instance.nodes;
             } else {
                 filteredNodes = pastry.filter(instance.nodes, function(node) {
-                    return node.id.indexOf(ns) === 0;
+                    return pastry.lc(node.id).indexOf(ns) === 0;
                 });
             }
 
