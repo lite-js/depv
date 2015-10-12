@@ -17,9 +17,9 @@ var
 
     path = 'result.html',
 
-    exec        = require('child_process').exec,
-    fs          = require('fs'),
-    pastry      = require('pastry'),
+    exec = require('child_process').exec,
+    fs = require('fs'),
+    pastry = require('pastry'),
     staticSever = require('node-static'),
 
     utils = require('./utils.js'),
@@ -59,7 +59,7 @@ if (!graph.circles) {
 }
 
 // 写入 graph 数据 {
-    fs.writeFile('./json/resultTree.json', pastry.JSON.stringify(graph, null, '\t'), 'utf-8', errorTracing);
+    fs.writeFile('./json/resultTree.json', pastry.json.stringify(graph, null, '\t'), 'utf-8', errorTracing);
 // }
 // 启动文件服务器 {
     fileServer = new staticSever.Server('./');
