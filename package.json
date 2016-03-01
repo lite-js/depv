@@ -5,7 +5,7 @@
     "homepage": "https://github.com/depv/depv",
 
     "main": "index.js",
-    "version": "0.0.1",
+    "version": "0.0.20160301",
 
     "author": {
         "description": "team of depv",
