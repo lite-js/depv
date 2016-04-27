@@ -15,11 +15,14 @@ dependencies       --> | render      | svg((svg))
 
 
 ```graph-LR
-depv((depv)) --> | --entry     | server
+depv((depv)) --> | --analyser  | server
+depv         --> | --config    | server
+depv         --> | --entry     | server
 depv         --> | --ignores   | server
-depv         --> | --seperator | server
+depv         --> | --name      | server
 depv         --> | --port      | server
 depv         --> | --root      | server
+depv         --> | --separator | server
 ```
 
 
@@ -33,6 +36,6 @@ type | web app
 method | GET
 
 
-### /dependencies.svg
+### /dependencies.svg?analyser=npm&name=depv
 
 
