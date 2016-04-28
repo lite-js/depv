@@ -11,3 +11,29 @@ var templateDirs = exports.templateDirs = [// templates
 
 var lintingDirs = exports.lintingDirs = [// templates
 'bin', 'gulp', 'lib', 'src'];
+
+var jsdocDirs = exports.jsdocDirs = [// templates
+'bin', 'gulp', 'lib', 'src'];
+
+var jsdocConfig = exports.jsdocConfig = { // for jsdoc
+  tags: {
+    allowUnknownTags: true
+  },
+  source: {
+    includePattern: '.+\\.es6$',
+    excludePattern: '(^|\\/|\\\\)_'
+  },
+  opts: {
+    destination: './doc' },
+  // TO BE OVERRIDE
+  plugins: ['plugins/markdown'],
+  templates: {
+    cleverLinks: true,
+    monospaceLinks: true,
+    path: 'ink-docstrap',
+    theme: 'cerulean',
+    navType: 'vertical',
+    linenums: true,
+    dateFormat: 'YYYY-MM'
+  }
+};

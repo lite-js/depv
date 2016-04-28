@@ -5,7 +5,6 @@ import {
 import gulp from 'gulp';
 import gutil from 'gulp-util';
 import gulpIf from 'gulp-if';
-import plumber from 'gulp-plumber';
 import eslint from 'gulp-eslint';
 import sprintf from 'zero-fmt/sprintf';
 import {
@@ -25,13 +24,13 @@ function isFixed(file) {
 each(lintingDirs, (dir) => {
   gulp.task(sprintf('eslint-%s', dir), () =>
       gulp.src(resolve(__dirname, sprintf('../%s/**/*.es6', dir)))
-        .pipe(plumber())
         .pipe(eslint())
         .on('error', (err) => {
           gutil.log(gutil.colors.red(err.message));
         })
         .pipe(eslint.format())
         .pipe(gulpIf(isFixed, gulp.dest(resolve(__dirname, sprintf('../%s/', dir)))))
+        .pipe(eslint.failAfterError())
   );
 });
 

@@ -102,7 +102,9 @@ export default (config = {}) => {
   /** routing */
   server.use(urlrouter((app) => {
     /** serving the visulizing page */
+    app.get('/', visualize(config)); // needed to pass configuration to the web app
     app.get('/visualize', visualize(config)); // needed to pass configuration to the web app
+    /** TODO serving the .svg file */
     app.get('/dependencies.svg', dependenciesSVG);
   }));
 

@@ -30,3 +30,5 @@ node_modules
 json/resultTree.json
 
 .idea
+
+doc/jsdoc

@@ -14,10 +14,6 @@ var _gulpIf = require('gulp-if');
 
 var _gulpIf2 = _interopRequireDefault(_gulpIf);
 
-var _gulpPlumber = require('gulp-plumber');
-
-var _gulpPlumber2 = _interopRequireDefault(_gulpPlumber);
-
 var _gulpEslint = require('gulp-eslint');
 
 var _gulpEslint2 = _interopRequireDefault(_gulpEslint);
@@ -39,9 +35,9 @@ function isFixed(file) {
 
 (0, _zeroLang.each)(_config.lintingDirs, function (dir) {
   _gulp2.default.task((0, _sprintf2.default)('eslint-%s', dir), function () {
-    return _gulp2.default.src((0, _path.resolve)(__dirname, (0, _sprintf2.default)('../%s/**/*.es6', dir))).pipe((0, _gulpPlumber2.default)()).pipe((0, _gulpEslint2.default)()).on('error', function (err) {
+    return _gulp2.default.src((0, _path.resolve)(__dirname, (0, _sprintf2.default)('../%s/**/*.es6', dir))).pipe((0, _gulpEslint2.default)()).on('error', function (err) {
       _gulpUtil2.default.log(_gulpUtil2.default.colors.red(err.message));
-    }).pipe(_gulpEslint2.default.format()).pipe((0, _gulpIf2.default)(isFixed, _gulp2.default.dest((0, _path.resolve)(__dirname, (0, _sprintf2.default)('../%s/', dir)))));
+    }).pipe(_gulpEslint2.default.format()).pipe((0, _gulpIf2.default)(isFixed, _gulp2.default.dest((0, _path.resolve)(__dirname, (0, _sprintf2.default)('../%s/', dir))))).pipe(_gulpEslint2.default.failAfterError());
   });
 });
 
