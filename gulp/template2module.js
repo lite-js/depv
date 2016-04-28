@@ -40,26 +40,25 @@ var underscoreEngine = _template2module2.default.engines.underscore;
 
 
 function renderTemplates() {
-  var _this = this;
-
-  return _through2.default.obj(function (file, enc, cb) {
-    console.log(file);
+  return _through2.default.obj(function render(file, enc, cb) {
     if (file.isNull()) {
-      _this.push(file);
+      this.push(file);
       return cb();
     }
 
     if (file.isStream()) {
-      _this.emit('error', new _gulpUtil2.default.PluginError('template2module', 'Streaming not supported'));
+      this.emit('error', new _gulpUtil2.default.PluginError('template2module', 'Streaming not supported'));
     }
+
     try {
-      var content = underscoreEngine.render(file.contents.toString('utf8'), file.path, 'commonjs').replace(/\<\!\-\-SVG_SPRITE\-\-\>/g, _config.svgSprite);
+      _gulpUtil2.default.log(file.path);
+      var content = underscoreEngine.render(file.contents.toString('utf8').replace(/<!\-\-SVG_SPRITE\-\->/g, _config.svgSprite), file.path, 'commonjs');
       file.contents = new Buffer(content);
     } catch (err) {
-      console.log(err);
-      _this.emit('error', new _gulpUtil2.default.PluginError('template2module', err.toString()));
+      this.emit('error', new _gulpUtil2.default.PluginError('template2module', err.toString()));
     }
-    _this.push(file);
+
+    this.push(file);
     return cb();
   });
 }

@@ -21,8 +21,7 @@ import {
 } from './config';
 
 function renderTemplates() {
-  return through.obj((file, enc, cb) => {
-    console.log(file);
+  return through.obj(function render(file, enc, cb) {
     if (file.isNull()) {
       this.push(file);
       return cb();
@@ -31,14 +30,20 @@ function renderTemplates() {
     if (file.isStream()) {
       this.emit('error', new gutil.PluginError('template2module', 'Streaming not supported'));
     }
+
     try {
-      const content = underscoreEngine.render(file.contents.toString('utf8'), file.path, 'commonjs')
-        .replace(/\<\!\-\-SVG_SPRITE\-\-\>/g, svgSprite);
+      gutil.log(file.path);
+      const content = underscoreEngine.render(
+        file.contents.toString('utf8')
+          .replace(/<!\-\-SVG_SPRITE\-\->/g, svgSprite),
+        file.path,
+        'commonjs'
+      );
       file.contents = new Buffer(content);
     } catch (err) {
-      console.log(err);
       this.emit('error', new gutil.PluginError('template2module', err.toString()));
     }
+
     this.push(file);
     return cb();
   });

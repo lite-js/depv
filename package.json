@@ -93,5 +93,6 @@
     "eslint": "gulp eslint"
   },
   "pre-commit": [
+    "eslint"
   ]
 }

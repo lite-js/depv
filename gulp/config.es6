@@ -55,8 +55,4 @@ export const jsdocConfig = { // for jsdoc
   },
 };
 
-console.log(readFileSync(resolve(__dirname, '../node_modules/evil-icons/assets/sprite.svg')));
-
-export const svgSprite = readFileSync(resolve(__dirname, '../node_modules/evil-icons/assets/sprite.svg'));
-
-
+export const svgSprite = readFileSync(resolve(__dirname, '../node_modules/evil-icons/assets/sprite.svg'), 'utf8');

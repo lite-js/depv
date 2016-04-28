@@ -21,9 +21,9 @@ function parseQuerystring(qs) {
   const eq = '=';
   const pieces = qs.split(sep);
   let tuple;
-  let obj = {};
+  const obj = {};
 
-  each(pieces, function (elem) {
+  each(pieces, (elem) => {
     tuple = elem.split(eq);
     if (tuple.length > 0) {
       obj[unescape(tuple.shift())] = unescape(tuple.join(eq));
@@ -34,7 +34,7 @@ function parseQuerystring(qs) {
 }
 
 function setElementAttrs(element, attrs) {
-  forIn(attrs, function (value, key) {
+  forIn(attrs, (value, key) => {
     element.setAttribute(key, value);
   });
 }
@@ -42,22 +42,23 @@ function setElementAttrs(element, attrs) {
 const query = parseQuerystring(lct.search.replace(/^\?/, '')); // query
 
 // config locale
-win.ZERO_DEFAULT_LOCALE = win.ZERO_LOCALE = win.ZERO_LOCALE || query.locale || CONFIG.zfinder.locale || 'en_US';
+window.ZERO_DEFAULT_LOCALE = window.ZERO_LOCALE =
+  window.ZERO_LOCALE || query.locale || CONFIG.zfinder.locale || 'en_US';
 
 let overlayElement;
 
 function loadJs(src, callback) {
-  var element = doc.createElement('script');
+  const element = doc.createElement('script');
   setElementAttrs(element, {
+    src,
     type: 'text/javascript',
     async: 'true',
-    src: src,
   });
   element.onload = callback;
 
   // IE 6 & 7
-  element.onreadystatechange = function () {
-    if (this.readyState == 'complete') {
+  element.onreadystatechange = () => {
+    if (this.readyState === 'complete') {
       callback();
     }
   };
@@ -66,19 +67,19 @@ function loadJs(src, callback) {
 }
 
 function loadCss(href) {
-  let link = doc.createElement('link');
+  const link = doc.createElement('link');
   setElementAttrs(link, {
+    href,
     rel: 'stylesheet',
     type: 'text/css',
-    href: href,
   });
   doc.getElementsByTagName('head')[0].appendChild(link);
 }
 
-const pageLoading = win.pageLoading = {
+const pageLoading = window.pageLoading = {
   load() {
     // javascript
-    loadJs('/src/locale/' + win.ZERO_LOCALE + '.js', function () {
+    loadJs(`/src/locale/${window.ZERO_LOCALE}.js`, () => {
       loadJs('/dist/index.js');
     });
 

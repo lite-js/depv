@@ -44,6 +44,4 @@ var jsdocConfig = exports.jsdocConfig = { // for jsdoc
   }
 };
 
-console.log((0, _fs.readFileSync)((0, _path.resolve)(__dirname, '../node_modules/evil-icons/assets/sprite.svg')));
-
-var svgSprite = exports.svgSprite = (0, _fs.readFileSync)((0, _path.resolve)(__dirname, '../node_modules/evil-icons/assets/sprite.svg'));
+var svgSprite = exports.svgSprite = (0, _fs.readFileSync)((0, _path.resolve)(__dirname, '../node_modules/evil-icons/assets/sprite.svg'), 'utf8');
