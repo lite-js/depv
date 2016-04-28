@@ -1,10 +1,15 @@
+/**
+ * controller module.
+ * @module ./dependenciesSVG
+ * @see module:../model/dependencies
+ */
 import template from '../template/visualize';
 import json from 'zero-encoding/json';
 
-export default (config) => {
-    return (req, res, next) => {
-        res._HTMLRes(template({
-            config: json.stringify(config)
-        }));
-    };
-};
+export default function constroller(config) {
+  return (req, res /* , next */) => {
+    res.htmlRes(template({
+      config: json.stringify(config),
+    }));
+  };
+}

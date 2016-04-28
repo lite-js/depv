@@ -40,36 +40,40 @@ var underscoreEngine = _template2module2.default.engines.underscore;
 
 
 function renderTemplates() {
-    return _through2.default.obj(function (file, enc, cb) {
-        if (file.isNull()) {
-            this.push(file);
-            return cb();
-        }
+  var _this = this;
 
-        if (file.isStream()) {
-            this.emit('error', new _gulpUtil2.default.PluginError('template2module', 'Streaming not supported'));
-        }
-        try {
-            file.contents = new Buffer(underscoreEngine.render(file.contents.toString('utf8'), file.path, 'commonjs'));
-        } catch (err) {
-            this.emit('error', new _gulpUtil2.default.PluginError('template2module', err.toString()));
-        }
+  return _through2.default.obj(function (file, enc, cb) {
+    if (file.isNull()) {
+      _this.push(file);
+      return cb();
+    }
 
-        this.push(file);
-        cb();
-    });
+    if (file.isStream()) {
+      _this.emit('error', new _gulpUtil2.default.PluginError('template2module', 'Streaming not supported'));
+    }
+    try {
+      file.contents = new Buffer(underscoreEngine.render(file.contents.toString('utf8'), file.path, 'commonjs'));
+    } catch (err) {
+      _this.emit('error', new _gulpUtil2.default.PluginError('template2module', err.toString()));
+    }
+
+    _this.push(file);
+    return cb();
+  });
 }
 
+// TODO add svg sprite file into HTML if needed
+
 (0, _zeroLang.each)(_config.templateDirs, function (dir) {
-    _gulp2.default.task((0, _sprintf2.default)('template2module-%s', dir), function () {
-        return _gulp2.default.src((0, _path.resolve)(__dirname, (0, _sprintf2.default)('../%s/**/*.html', dir))).pipe((0, _gulpPlumber2.default)()).pipe(renderTemplates()).on('error', function (err) {
-            _gulpUtil2.default.log(_gulpUtil2.default.colors.red(err.message));
-        }).pipe((0, _gulpRename2.default)(function (path) {
-            path.extname = '.js';
-        })).pipe(_gulp2.default.dest((0, _path.resolve)(__dirname, (0, _sprintf2.default)('../%s/', dir))));
-    });
+  _gulp2.default.task((0, _sprintf2.default)('template2module-%s', dir), function () {
+    return _gulp2.default.src((0, _path.resolve)(__dirname, (0, _sprintf2.default)('../%s/**/*.html', dir))).pipe((0, _gulpPlumber2.default)()).pipe(renderTemplates()).on('error', function (err) {
+      _gulpUtil2.default.log(_gulpUtil2.default.colors.red(err.message));
+    }).pipe((0, _gulpRename2.default)(function (path) {
+      path.extname = '.js';
+    })).pipe(_gulp2.default.dest((0, _path.resolve)(__dirname, (0, _sprintf2.default)('../%s/', dir))));
+  });
 });
 
 _gulp2.default.task('template2module', (0, _zeroLang.map)(_config.templateDirs, function (dir) {
-    return (0, _sprintf2.default)('template2module-%s', dir);
+  return (0, _sprintf2.default)('template2module-%s', dir);
 }));

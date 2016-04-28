@@ -1,15 +1,14 @@
 /**
  * controller module.
  * @module ./visualize
- * @see module:./dependencies
  */
 import template from '../template/visualize';
 import json from 'zero-encoding/json';
 
-export default (config) => {
-    return (req, res, next) => {
-        res._HTMLRes(template({
-            config: json.stringify(config)
-        }));
-    };
-};
+export default function visualize(config) {
+  return (req, res /* , next */) => {
+    res.htmlRes(template({
+      config: json.stringify(config),
+    }));
+  };
+}
