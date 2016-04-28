@@ -1,8 +1,3 @@
-/**
- * controller module.
- * @module ./visualize
- * @see module:./dependencies
- */
 import template from '../template/visualize';
 import json from 'zero-encoding/json';
 

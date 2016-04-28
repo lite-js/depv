@@ -3,8 +3,6 @@ import {
 } from 'path';
 
 import gulp from 'gulp';
-import babel from 'gulp-babel';
-import rename from 'gulp-rename';
 import sprintf from 'zero-fmt/sprintf';
 import {
     each,
@@ -12,13 +10,19 @@ import {
 } from 'zero-lang';
 
 import {
-    scriptDirs
+    scriptDirs,
+    templateDirs
 } from './config'
 
 gulp.task('watch', () => {
     // watch script directories
     each(scriptDirs, (dir) => {
         gulp.watch(resolve(__dirname, sprintf('../%s/**/*.es6', dir)), [sprintf('babel-%s', dir)]);
+    });
+
+    // watch template directories
+    each(templateDirs, (dir) => {
+        gulp.watch(resolve(__dirname, sprintf('../%s/**/*.html', dir)), [sprintf('template2module-%s', dir)]);
     });
 });
 

@@ -5,3 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 var scriptDirs = exports.scriptDirs = [// scripts working in node.js
 'bin', 'gulp', 'lib'];
+
+var templateDirs = exports.templateDirs = [// templates
+'lib'];
