@@ -25,7 +25,7 @@ each(jsdocDirs, (dir) => {
     },
   });
   gulp.task(sprintf('jsdoc-%s', dir), () =>
-      gulp.src(resolve(__dirname, sprintf('../%s/**/*.es6', dir)), { read: false })
+      gulp.src(resolve(__dirname, sprintf('../%s/**/*.js', dir)), { read: false })
         .pipe(plumber())
         .pipe(jsdoc(config))
         .on('error', (err) => {

@@ -43,6 +43,7 @@ function renderTemplates() {
   var _this = this;
 
   return _through2.default.obj(function (file, enc, cb) {
+    console.log(file);
     if (file.isNull()) {
       _this.push(file);
       return cb();
@@ -52,11 +53,12 @@ function renderTemplates() {
       _this.emit('error', new _gulpUtil2.default.PluginError('template2module', 'Streaming not supported'));
     }
     try {
-      file.contents = new Buffer(underscoreEngine.render(file.contents.toString('utf8'), file.path, 'commonjs'));
+      var content = underscoreEngine.render(file.contents.toString('utf8'), file.path, 'commonjs').replace(/\<\!\-\-SVG_SPRITE\-\-\>/g, _config.svgSprite);
+      file.contents = new Buffer(content);
     } catch (err) {
+      console.log(err);
       _this.emit('error', new _gulpUtil2.default.PluginError('template2module', err.toString()));
     }
-
     _this.push(file);
     return cb();
   });

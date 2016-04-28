@@ -16,11 +16,13 @@ import {
 } from 'zero-lang';
 
 import {
+  svgSprite,
   templateDirs,
 } from './config';
 
 function renderTemplates() {
   return through.obj((file, enc, cb) => {
+    console.log(file);
     if (file.isNull()) {
       this.push(file);
       return cb();
@@ -30,11 +32,13 @@ function renderTemplates() {
       this.emit('error', new gutil.PluginError('template2module', 'Streaming not supported'));
     }
     try {
-      file.contents = new Buffer(underscoreEngine.render(file.contents.toString('utf8'), file.path, 'commonjs'));
+      const content = underscoreEngine.render(file.contents.toString('utf8'), file.path, 'commonjs')
+        .replace(/\<\!\-\-SVG_SPRITE\-\-\>/g, svgSprite);
+      file.contents = new Buffer(content);
     } catch (err) {
+      console.log(err);
       this.emit('error', new gutil.PluginError('template2module', err.toString()));
     }
-
     this.push(file);
     return cb();
   });

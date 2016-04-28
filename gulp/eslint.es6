@@ -22,15 +22,18 @@ function isFixed(file) {
 }
 
 each(lintingDirs, (dir) => {
-  gulp.task(sprintf('eslint-%s', dir), () =>
-      gulp.src(resolve(__dirname, sprintf('../%s/**/*.es6', dir)))
+  gulp.task(
+    sprintf('eslint-%s', dir), () => {
+      const srcPath = resolve(__dirname, sprintf((dir === 'src') ? '../%s/**/*.js' : '../%s/**/*.es6', dir));
+      gulp.src(srcPath)
         .pipe(eslint())
         .on('error', (err) => {
           gutil.log(gutil.colors.red(err.message));
         })
         .pipe(eslint.format())
         .pipe(gulpIf(isFixed, gulp.dest(resolve(__dirname, sprintf('../%s/', dir)))))
-        .pipe(eslint.failAfterError())
+        .pipe(eslint.failAfterError());
+    }
   );
 });
 

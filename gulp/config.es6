@@ -1,3 +1,10 @@
+import {
+  readFileSync,
+} from 'fs';
+import {
+  resolve,
+} from 'path';
+
 export const scriptDirs = [ // scripts working in node.js
   'bin',
   'gulp',
@@ -28,7 +35,7 @@ export const jsdocConfig = { // for jsdoc
     allowUnknownTags: true,
   },
   source: {
-    includePattern: '.+\\.es6$',
+    includePattern: '.+\\.js$',
     excludePattern: '(^|\\/|\\\\)_',
   },
   opts: {
@@ -47,4 +54,9 @@ export const jsdocConfig = { // for jsdoc
     dateFormat: 'YYYY-MM',
   },
 };
+
+console.log(readFileSync(resolve(__dirname, '../node_modules/evil-icons/assets/sprite.svg')));
+
+export const svgSprite = readFileSync(resolve(__dirname, '../node_modules/evil-icons/assets/sprite.svg'));
+
 

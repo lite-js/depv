@@ -19,10 +19,6 @@ module.exports = {
             query: {
                 presets: [
                     'es2015'
-                ],
-                plugins: [
-                    'syntax-export-extensions',
-                    'transform-export-extensions'
                 ]
             }
         }, {

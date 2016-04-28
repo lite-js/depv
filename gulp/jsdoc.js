@@ -35,7 +35,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   });
   // TO BE OVERRIDE
   _gulp2.default.task((0, _sprintf2.default)('jsdoc-%s', dir), function () {
-    return _gulp2.default.src((0, _path.resolve)(__dirname, (0, _sprintf2.default)('../%s/**/*.es6', dir)), { read: false }).pipe((0, _gulpPlumber2.default)()).pipe((0, _gulpJsdoc2.default)(config)).on('error', function (err) {
+    return _gulp2.default.src((0, _path.resolve)(__dirname, (0, _sprintf2.default)('../%s/**/*.js', dir)), { read: false }).pipe((0, _gulpPlumber2.default)()).pipe((0, _gulpJsdoc2.default)(config)).on('error', function (err) {
       _gulpUtil2.default.log(_gulpUtil2.default.colors.red(err.message));
     });
   });
