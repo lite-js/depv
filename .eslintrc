@@ -1,5 +1,16 @@
 {
   "extends": [
     "eslint-config-airbnb"
-  ]
+  ],
+  "rules": {
+    "max-len": [
+      "error",
+      120,
+      4,
+      {
+        "ignoreUrls": true
+      }
+    ],
+    "no-param-reassign": 0
+  }
 }
