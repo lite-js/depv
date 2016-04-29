@@ -26,7 +26,7 @@ define([
             return cacheColor[type];
         }
         var colorNames = color.names,
-            hash       = CryptoJS.SHA256('' + type),
+            hash       = CryptoJS.SHA256('' + type), // use String.prototype.charCodeAt() instead, which is much lighter
             hex        = parseInt(hash.toString(), 16),
             randomId   = hex % colorNames.length;
 

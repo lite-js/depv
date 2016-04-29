@@ -6,14 +6,16 @@
 }
 
 #sidebar {
-  .flex(initial);
-  .transition(width .3s ease-in-out);
-  background: #fff;
+  cursor: pointer;
   width: 10px;
+  background-color: #ffa;
   overflow: hidden;
+  .flex(initial);
+  .transition(width .3s ease-in-out, background-color .5s ease-in-out);
   &:hover {
-    .transition(width .3s ease-in-out);
     width: 300px;
+    background-color: #eee;
+    .transition(width .3s ease-in-out, background-color .5s ease-in-out);
   }
   .inner {
     padding: 10px;
@@ -22,8 +24,9 @@
 }
 
 #canvas {
-  .flex(1);
-  background: rgb(61, 79, 93);
+  background: #666;
   color: #fff;
+  .flex(1);
+  .background-image(radial-gradient(circle, #666, #333));
 }
 
