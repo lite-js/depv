@@ -97,6 +97,7 @@ export default (config = {}) => {
   });
 
   /** serving the static files */
+  server.use('/src/locale', serveStatic(resolve(__dirname, '../src/locale')));
   server.use('/dist', serveStatic(resolve(__dirname, '../dist')));
 
   /** routing */

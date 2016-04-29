@@ -30,7 +30,7 @@ if (process.argv.length === 2) {
 } else {
   (function () {
     var config = {};
-    var overrideConfigs = ['analyser', 'entry', 'port', 'separator'];
+    var overrideConfigs = ['analyser', 'entry', 'open', 'port', 'separator'];
 
     try {
       if (_commander2.default.config) {
@@ -46,8 +46,9 @@ if (process.argv.length === 2) {
       }
     });
 
-    config.open = true;
-
+    if (!config.port) {
+      config.port = 1024;
+    }
     (0, _index2.default)(config);
   })();
 }

@@ -35,6 +35,7 @@ if (process.argv.length === 2) {
   const overrideConfigs = [
     'analyser',
     'entry',
+    'open',
     'port',
     'separator',
   ];
@@ -53,8 +54,8 @@ if (process.argv.length === 2) {
     }
   });
 
-  config.open = true;
-
+  if (!config.port) {
+    config.port = 1024;
+  }
   depv(config);
 }
-

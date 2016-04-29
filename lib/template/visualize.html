@@ -6,8 +6,17 @@
   <link rel="stylesheet" href="dist/page-loading.css">
 </head>
 <body>
-<!--SVG_SPRITE-->
-<div id="app"></div>
+<div id="app">
+  <aside id="sidebar">
+    <div class="inner"></div>
+  </aside>
+  <div id="canvas">
+    <div class="inner"></div>
+  </div>
+</div>
+<div id="loading-mask">
+  <icon name="ei-spinner" size="l" class="loading-icon"/>
+</div>
 <script>
   var CONFIG = JSON.parse('<%= config %>');
 </script>
