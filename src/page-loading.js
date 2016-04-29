@@ -1,15 +1,14 @@
+require('evil-icons/assets/evil-icons.css');
 require('./page-loading.less');
 
 import {
-  forIn,
-} from 'zero-lang/object';
-import {
   each,
-} from 'zero-lang/array';
+  forIn,
+} from 'zero-lang';
 
 const CONFIG = window.CONFIG;
-const doc = window.document;
 const lct = window.location;
+const doc = window.document;
 const body = doc.body;
 
 function unescape(s) {
@@ -42,10 +41,7 @@ function setElementAttrs(element, attrs) {
 const query = parseQuerystring(lct.search.replace(/^\?/, '')); // query
 
 // config locale
-window.ZERO_DEFAULT_LOCALE = window.ZERO_LOCALE =
-  window.ZERO_LOCALE || query.locale || CONFIG.zfinder.locale || 'en_US';
-
-let overlayElement;
+window.ZERO_DEFAULT_LOCALE = window.ZERO_LOCALE = window.ZERO_LOCALE || query.locale || CONFIG.locale || 'en_US';
 
 function loadJs(src, callback) {
   const element = doc.createElement('script');
@@ -76,35 +72,38 @@ function loadCss(href) {
   doc.getElementsByTagName('head')[0].appendChild(link);
 }
 
+let overlayElement;
+function ensureLoadingElement(callback) {
+  if (!overlayElement) {
+    overlayElement = doc.getElementById('loading-mask');
+  }
+  callback();
+}
+
 const pageLoading = window.pageLoading = {
   load() {
     // javascript
-    loadJs(`/src/locale/${window.ZERO_LOCALE}.js`, () => {
-      loadJs('/dist/index.js');
+    loadJs(`src/locale/${window.ZERO_LOCALE}.js`, () => {
+      loadJs('dist/index.js');
     });
-
     // css
-    loadCss('/index.css');
+    loadCss('dist/index.css');
     return pageLoading;
   },
 
-  showOverlay() {
-    if (!overlayElement) {
-      overlayElement = doc.createElement('div');
-      overlayElement.className = 'page-loading-overlay';
-      overlayElement.innerHTML = '<div class="sk-rotating-plane"></div>';
-      body.insertBefore(overlayElement, body.firstChild);
-    }
+  showLoading() {
+    ensureLoadingElement(() => {
+      overlayElement.style.display = '';
+    });
     return pageLoading;
   },
 
-  hideOverlay() {
-    if (overlayElement) {
-      overlayElement.parentElement.removeChild(overlayElement);
-      overlayElement = null;
-    }
+  hideLoading() {
+    ensureLoadingElement(() => {
+      overlayElement.style.display = 'none';
+    });
     return pageLoading;
   },
 };
 
-pageLoading.showOverlay().load();
+pageLoading.showLoading().load();

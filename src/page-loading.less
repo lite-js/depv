@@ -1,7 +1,5 @@
-/* third-party */
-/* main */
-.page-loading-overlay {
-  background-color: white;
+#loading-mask {
+  background: rgba(255, 255, 255, .5);
   box-sizing: border-box;
   height: 100%;
   left: 0;
@@ -9,9 +7,12 @@
   top: 0;
   width: 100%;
   z-index: 99999;
-}
-
-.page-loading-overlay .sk-rotating-plane {
-  background-color: #fafafa;
-  border: 1px solid rgba(0, 0, 0, .07);
+  .loading-icon {
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }

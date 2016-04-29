@@ -1,0 +1,2 @@
+window.LOCALE_MSG = {
+};
