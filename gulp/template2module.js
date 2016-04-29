@@ -30,6 +30,8 @@ var _template2module = require('template2module');
 
 var _template2module2 = _interopRequireDefault(_template2module);
 
+var _evilIcons = require('evil-icons');
+
 var _zeroLang = require('zero-lang');
 
 var _config = require('./config');
@@ -52,7 +54,7 @@ function renderTemplates() {
 
     try {
       _gulpUtil2.default.log(file.path);
-      var content = underscoreEngine.render(file.contents.toString('utf8').replace(/<!\-\-SVG_SPRITE\-\->/g, _config.svgSprite), file.path, 'commonjs');
+      var content = underscoreEngine.render((0, _evilIcons.iconizeHtml)(file.contents.toString('utf8')), file.path, 'commonjs');
       file.contents = new Buffer(content);
     } catch (err) {
       this.emit('error', new _gulpUtil2.default.PluginError('template2module', err.toString()));

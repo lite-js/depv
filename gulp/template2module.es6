@@ -11,12 +11,14 @@ import through from 'through2';
 import tpl2mod from 'template2module';
 const underscoreEngine = tpl2mod.engines.underscore;
 import {
+  iconizeHtml,
+} from 'evil-icons';
+import {
   each,
   map,
 } from 'zero-lang';
 
 import {
-  svgSprite,
   templateDirs,
 } from './config';
 
@@ -33,12 +35,7 @@ function renderTemplates() {
 
     try {
       gutil.log(file.path);
-      const content = underscoreEngine.render(
-        file.contents.toString('utf8')
-          .replace(/<!\-\-SVG_SPRITE\-\->/g, svgSprite),
-        file.path,
-        'commonjs'
-      );
+      const content = underscoreEngine.render(iconizeHtml(file.contents.toString('utf8')), file.path, 'commonjs');
       file.contents = new Buffer(content);
     } catch (err) {
       this.emit('error', new gutil.PluginError('template2module', err.toString()));

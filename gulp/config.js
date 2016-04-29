@@ -3,11 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.svgSprite = exports.jsdocConfig = exports.jsdocDirs = exports.lintingDirs = exports.templateDirs = exports.scriptDirs = undefined;
-
-var _fs = require('fs');
-
-var _path = require('path');
+var devPort = exports.devPort = 1025;
 
 var scriptDirs = exports.scriptDirs = [// scripts working in node.js
 'bin', 'gulp', 'lib'];
@@ -43,5 +39,3 @@ var jsdocConfig = exports.jsdocConfig = { // for jsdoc
     dateFormat: 'YYYY-MM'
   }
 };
-
-var svgSprite = exports.svgSprite = (0, _fs.readFileSync)((0, _path.resolve)(__dirname, '../node_modules/evil-icons/assets/sprite.svg'), 'utf8');

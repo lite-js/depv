@@ -1,9 +1,4 @@
-import {
-  readFileSync,
-} from 'fs';
-import {
-  resolve,
-} from 'path';
+export const devPort = 1025;
 
 export const scriptDirs = [ // scripts working in node.js
   'bin',
@@ -54,5 +49,3 @@ export const jsdocConfig = { // for jsdoc
     dateFormat: 'YYYY-MM',
   },
 };
-
-export const svgSprite = readFileSync(resolve(__dirname, '../node_modules/evil-icons/assets/sprite.svg'), 'utf8');
