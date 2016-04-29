@@ -25,7 +25,8 @@ each(lintingDirs, (dir) => {
   gulp.task(
     sprintf('eslint-%s', dir), () => {
       const srcPath = resolve(__dirname, sprintf((dir === 'src') ? '../%s/**/*.js' : '../%s/**/*.es6', dir));
-      gulp.src(srcPath)
+      const ignorePath = `!${resolve(__dirname, sprintf('../%s/template/**/*.js', dir))}`;
+      gulp.src([srcPath, ignorePath])
         .pipe(eslint())
         .on('error', (err) => {
           gutil.log(gutil.colors.red(err.message));

@@ -1,7 +1,8 @@
 import Component from './base';
+import markup from '../template/canvas';
 
 export default new Component({
-  markup() {
-    return '<svg id="graph"></svg>';
+  markup,
+  afterRendered() {
   },
 }).render('#canvas .inner');

@@ -19,7 +19,7 @@ export default declare({
     const me = this;
     extend(me, option);
     const data = extend({}, me.data, {
-      localeMsg: window.LOCALE_MSG, // 默认在渲染时加入所有国际化文本
+      localeMsg: window.LOCALE_MSG, // add all locale messages to render templates
     });
     me.outerDom = toDom(me.markup(data));
     me.innerDom = me.outerDom;

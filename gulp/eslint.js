@@ -36,7 +36,8 @@ function isFixed(file) {
 (0, _zeroLang.each)(_config.lintingDirs, function (dir) {
   _gulp2.default.task((0, _sprintf2.default)('eslint-%s', dir), function () {
     var srcPath = (0, _path.resolve)(__dirname, (0, _sprintf2.default)(dir === 'src' ? '../%s/**/*.js' : '../%s/**/*.es6', dir));
-    _gulp2.default.src(srcPath).pipe((0, _gulpEslint2.default)()).on('error', function (err) {
+    var ignorePath = '!' + (0, _path.resolve)(__dirname, (0, _sprintf2.default)('../%s/template/**/*.js', dir));
+    _gulp2.default.src([srcPath, ignorePath]).pipe((0, _gulpEslint2.default)()).on('error', function (err) {
       _gulpUtil2.default.log(_gulpUtil2.default.colors.red(err.message));
     }).pipe(_gulpEslint2.default.format()).pipe((0, _gulpIf2.default)(isFixed, _gulp2.default.dest((0, _path.resolve)(__dirname, (0, _sprintf2.default)('../%s/', dir))))).pipe(_gulpEslint2.default.failAfterError());
   });
