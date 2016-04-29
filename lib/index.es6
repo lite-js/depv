@@ -9,10 +9,10 @@ import {
   resolve,
 } from 'path';
 
+import bodyParser from 'body-parser';
 import connect from 'connect';
 import getPort from 'get-port';
 import hostname from 'os-hostname';
-import json from 'zero-encoding/json';
 import open from 'open';
 import serveStatic from 'serve-static';
 import sprintf from 'zero-fmt/sprintf';
@@ -23,6 +23,7 @@ import {
 
 /** visualize. */
 import visualize from './controller/visualize';
+import dependencies from './controller/dependencies';
 import dependenciesSVG from './controller/dependenciesSVG';
 
 const DEFAULT_CONFIG = {
@@ -59,33 +60,42 @@ export default (config = {}) => {
 
   const server = connect();
 
+  /** parsing body. */
+  server
+    .use(bodyParser.json()) // parse json body
+    .use(bodyParser.urlencoded({
+      extended: true,
+    })) // parse urlencoded body
+    .use(bodyParser.raw()) // parse raw body
+    .use(bodyParser.text()); // parse text body
+
   /** adding utils to request and response context. */
   server.use((req, res, next) => {
     const urlInfo = url.parse(req.url, true);
     const query = urlInfo.query || {};
     const body = req.body || {};
 
-    /** req._urlInfo */
+    /** req.urlInfo */
     req.urlInfo = urlInfo;
-    /** req._pathname */
+    /** req.pathname */
     req.pathname = decodeURIComponent(urlInfo.pathname);
 
-    /** req._params (combination of query and body) */
+    /** req.params (combination of query and body) */
     req.params = extend({}, query, body);
-    /** req._query */
+    /** req.query */
     req.query = query;
-    /** req._body */
+    /** req.body */
     req.body = body;
 
-    /** res._JSONRes(data) (generate JSON response) **/
+    /** res.jsonRes(data) (generate JSON response) **/
     res.jsonRes = (data) => {
-      const buf = new Buffer(json.stringify(data), 'utf8');
+      const buf = new Buffer(JSON.stringify(data), 'utf8');
       res.setHeader('Content-Type', 'application/json; charset=utf-8');
       res.setHeader('Content-Length', buf.length);
       res.end(buf);
     };
 
-    /** res._HTMLRes(data) (generate HTML response) */
+    /** res.htmlRes(data) (generate HTML response) */
     res.htmlRes = (data) => {
       const buf = new Buffer(data);
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -103,10 +113,13 @@ export default (config = {}) => {
   /** routing */
   server.use(urlrouter((app) => {
     /** serving the visulizing page */
-    app.get('/', visualize(config)); // needed to pass configuration to the web app
     app.get('/visualize', visualize(config)); // needed to pass configuration to the web app
+
+    /** serving dependencies as json format */
+    app.get('/dependencies', dependencies());
+
     /** TODO serving the .svg file */
-    app.get('/dependencies.svg', dependenciesSVG);
+    app.get('/dependencies.svg', dependenciesSVG());
   }));
 
   if (config.port) {
