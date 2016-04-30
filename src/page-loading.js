@@ -1,5 +1,5 @@
-require('evil-icons/assets/evil-icons.css');
-require('./page-loading.less');
+import 'evil-icons/assets/evil-icons.css';
+import './page-loading.less';
 
 import {
   each,

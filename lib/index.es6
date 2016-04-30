@@ -27,7 +27,7 @@ import dependencies from './controller/dependencies';
 import dependenciesSVG from './controller/dependenciesSVG';
 
 const DEFAULT_CONFIG = {
-  analyzer: 'npm',
+  analyser: 'npm',
   root: process.cwd(),
 };
 

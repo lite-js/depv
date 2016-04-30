@@ -1,5 +1,5 @@
-require('purecss/build/pure.css');
-require('./index.less');
+import 'purecss/build/pure.css';
+import './index.less';
 
 import './component/canvas';
 import './component/module-filter';
