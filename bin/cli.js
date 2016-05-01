@@ -23,14 +23,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var pkg = require((0, _path.resolve)(__dirname, '../package.json'));
 
-_commander2.default.version(pkg.version).description('to visualize the dependencies of your project.').option('-a, --analyser <analyser>', 'define a npm module as a analyser(which will be passed to require() function)').option('-c, --config <config>', 'config file (.yaml)').option('-e, --entry <entry>', 'define the entry file for analyser').option('-o, --open', 'open /visualize in a browser').option('-p, --port <port>', 'define a port for the running server(default is a random port)').option('-s, --separator <separator>', 'separator for modules').parse(process.argv);
+_commander2.default.version(pkg.version).description('to visualize the dependencies of your project.').option('-a, --analyser <analyser>', 'define a npm module as a analyser(which will be passed to require() function)').option('-c, --config <config>', 'config file (.yaml)').option('-e, --entry <entry>', 'define the entry file for analyser').option('-i, --ignore <ignore>', 'string to ignore').option('-o, --open', 'open /visualize in a browser').option('-p, --port <port>', 'define a port for the running server(default is a random port)').option('-r, --root <root>', 'entry root').option('-s, --separator <separator>', 'separator for modules').option('-x, --extensions <extensions>', 'extensions, comma seperated').parse(process.argv);
 
 if (process.argv.length === 2) {
   _commander2.default.outputHelp();
 } else {
   (function () {
     var config = {};
-    var overrideConfigs = ['analyser', 'entry', 'open', 'port', 'separator'];
+    var overrideConfigs = ['analyser', 'entry', 'extensions', 'ignore', 'open', 'port', 'root', 'separator'];
 
     try {
       if (_commander2.default.config) {
