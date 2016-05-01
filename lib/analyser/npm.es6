@@ -16,6 +16,7 @@ function generateDependenciesFromPkg(pkg) {
   const nodes = [{
     name: pkg.name,
     version: pkg.version,
+    type: 'entry',
   }];
   const edges = [];
   forIn(pkg.dependencies, (version, name) => {
@@ -25,21 +26,21 @@ function generateDependenciesFromPkg(pkg) {
       type: 'main',
     });
     edges.push({
-      from: name,
-      to: pkg.name,
+      source: name,
+      target: pkg.name,
     });
   });
-  forIn(pkg.devDependencies, (version, name) => {
-    nodes.push({
-      name,
-      version,
-      type: 'dev',
-    });
-    edges.push({
-      from: name,
-      to: pkg.name,
-    });
-  });
+  // forIn(pkg.devDependencies, (version, name) => {
+  //   nodes.push({
+  //     name,
+  //     version,
+  //     type: 'dev',
+  //   });
+  //   edges.push({
+  //     source: name,
+  //     target: pkg.name,
+  //   });
+  // });
   return {
     nodes,
     edges,
@@ -52,6 +53,7 @@ export default (config, callback) => {
    * @param {string} config.name - name of the published npm module.
    * @param {string} config.entry - package.json of an npm project.
    * @param {string} config.root - npm project directory that has an package.json in it.
+   * @param {function} callback - callback that use the result as parameter
    */
   if (config.name) {
     request(sprintf('https://r.cnpmjs.org/%s', config.name))

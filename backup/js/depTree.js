@@ -54,7 +54,6 @@ define([
                     .nodeSep(40)
                     .rankSep(120)
                     .rankDir('TB'),
-
             }, tree);
 
             process.run(instance);

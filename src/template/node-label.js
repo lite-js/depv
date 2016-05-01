@@ -7,8 +7,10 @@ module.exports = function(data, helper) {
     var print = function() {
         __p += __j.call(arguments, '');
     };
-    return (function() {
-        __p += '<svg id="graph">\n  <g class="inner"></g>\n</svg>\n';;
+    return (function(name) {
+        __p += '<div class="node-label">' +
+            ((__t = (name)) == null ? '' : __t) +
+            '</div>\n';;
         return __p;
-    })();
+    })(data.name);
 };

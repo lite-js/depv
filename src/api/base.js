@@ -37,9 +37,7 @@ function wrapFetch(method, url, options = {}) {
   }
 
   options.method = method;
-  options.credentials = options.credentials || 'same-origin'; // 允许带上cookie
-
-  console.log(url, options);
+  options.credentials = options.credentials || 'same-origin'; // cookies are allowed
 
   return fetch(url, options)
     .then((response) => {
