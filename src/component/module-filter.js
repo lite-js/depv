@@ -18,9 +18,7 @@ export default new Component({
 
   filter(query) {
     const me = this;
-    const nodes = lang.filter(me.metaData.nodes, (node) => {
-      return node.name.indexOf(query) > -1;
-    });
+    const nodes = lang.filter(me.metaData.nodes, (node) => node.name.indexOf(query) > -1);
     me.rerenderInnerDom({
       nodes,
     });
