@@ -46,12 +46,17 @@ export default new Component({
   afterRendered() {
     const me = this;
     me.outerDom = domQuery.one('#canvas');
+
     fetchDependencies({
       query: window.CONFIG,
     }).then((dependencies) => {
-      event.emit('update-nodes', dependencies.nodes);
+      event.emit('update-meta-data', dependencies);
       me.draw(dependencies);
       window.pageLoading.hideLoading();
+    });
+
+    event.on('redraw-canvas', (data) => {
+      me.draw(data);
     });
   },
 }).render('#canvas');

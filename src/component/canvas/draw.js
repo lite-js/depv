@@ -23,11 +23,11 @@ export default function draw(data) {
 
   let graph = me.graph;
 
-  if (data && isArray(data.nodes)) {
+  if (data && isArray(data.nodes) && isArray(data.edges)) {
     graph = me.graph = new dagreD3.graphlib.Graph().setGraph({});
 
     // setting graph
-    graph.graph().ranksep = 180;
+    graph.graph().ranksep = 240;
     graph.graph().nodesep = 40;
 
     me.processNodes(data.nodes);
