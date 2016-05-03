@@ -10,7 +10,7 @@ import menuItems from '../template/menu-items';
 export default new Component({
   markup,
 
-  rerenderInnerDom(data) {
+  reRenderInnerDom(data) {
     const me = this;
     me.innerDom.innerHTML = menuItems(data, lang);
     return me;
@@ -18,6 +18,7 @@ export default new Component({
 
   filter(query) {
     const me = this;
+    // TODO if (query === someNode.name), show the dependent and dependencies of someNode
     const nodes = lang.filter(me.metaData.nodes, (node) => node.name.indexOf(query) > -1);
     me.rerenderInnerDom({
       nodes,
@@ -36,7 +37,7 @@ export default new Component({
     me.innerDom = domQuery.one('#module-filter-result');
     event.on('update-meta-data', (dependencies) => {
       me.metaData = dependencies;
-      me.rerenderInnerDom(dependencies);
+      me.reRenderInnerDom(dependencies);
     });
 
     const queryDom = domQuery.one('#module-filter-query');
