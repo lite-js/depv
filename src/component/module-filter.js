@@ -40,7 +40,7 @@ export default new Component({
     });
 
     const queryDom = domQuery.one('#module-filter-query');
-    domEvent.on(queryDom, 'input', () => {
+    domEvent.on(queryDom, 'change', () => {
       me.filter(queryDom.value);
     });
   },

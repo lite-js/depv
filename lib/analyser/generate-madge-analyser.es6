@@ -6,10 +6,7 @@ import {
   isString,
 } from 'zero-lang';
 import madge from 'madge';
-
-function getType(name) {
-  return name.split('/')[0];
-}
+import getType from './get-module-type';
 
 export default (format) => (config, callback) => {
   /**

@@ -12,18 +12,20 @@ import {
   forIn,
 } from 'zero-lang';
 
+import getType from './get-module-type';
+
 function generateDependenciesFromPkg(pkg) {
   const nodes = [{
     name: pkg.name,
     version: pkg.version,
-    type: 'entry',
+    type: getType(pkg.name),
   }];
   const edges = [];
   forIn(pkg.dependencies, (version, name) => {
     nodes.push({
       name,
       version,
-      type: 'main',
+      type: getType(name),
     });
     edges.push({
       source: name,
@@ -34,7 +36,7 @@ function generateDependenciesFromPkg(pkg) {
   //   nodes.push({
   //     name,
   //     version,
-  //     type: 'dev',
+  //     type: getType(name),
   //   });
   //   edges.push({
   //     source: name,

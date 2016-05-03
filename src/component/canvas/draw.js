@@ -21,10 +21,8 @@ export default function draw(data) {
   // @FIXME
   d3Svg.attr('height', domStyle.get(me.outerDom, 'height'));
 
-  let graph = me.graph;
-
   if (data && isArray(data.nodes) && isArray(data.edges)) {
-    graph = me.graph = new dagreD3.graphlib.Graph().setGraph({});
+    const graph = me.graph = new dagreD3.graphlib.Graph().setGraph({});
 
     // setting graph
     graph.graph().ranksep = 240;
@@ -73,14 +71,12 @@ export default function draw(data) {
     });
 
     const d3G = me.d3G = d3Svg.select('g');
+    d3G.attr('transform', 'translate(0, 0)scale(1)');
+
     renderer(d3G, graph);
 
     const zoomed = () => {
-      d3G
-        .attr(
-        'transform',
-        `translate(${d3.event.translate})scale(${d3.event.scale})`
-      );
+      d3G.attr('transform', `translate(${d3.event.translate})scale(${d3.event.scale})`);
     };
     me.zoom = d3.behavior.zoom().scaleExtent([0.03, 3]).on('zoom', zoomed);
     d3Svg.call(me.zoom);
@@ -89,7 +85,7 @@ export default function draw(data) {
     me.styleEdges();
 
     me.transition(extend({
-      duration: 0,
+      duration: 200,
     }, me.getCenterPoint()));
   }
 
