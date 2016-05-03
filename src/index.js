@@ -4,4 +4,3 @@ import './index.less';
 import './component/canvas';
 import './component/module-filter';
 
-window.pageLoading.hideLoading();

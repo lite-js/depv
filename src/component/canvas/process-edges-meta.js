@@ -12,7 +12,7 @@ export default function preprocessEdges(edges) {
     extend(edge, {
       id: edge.id || `${edge.source}TO${edge.target}`,
       lineInterpolate: 'basis',
-      arrowheadStyle: 'fill: white',
+      arrowheadStyle: 'fill: #999',
     });
   });
 }

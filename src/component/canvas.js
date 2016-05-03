@@ -2,6 +2,7 @@ import domQuery from 'zero-dom/query';
 
 import Component from './base';
 import fetchDependencies from '../api/fetch-dependencies';
+import event from '../event/global';
 
 // api implements
 import addEdges from './canvas/add-edges';
@@ -25,9 +26,7 @@ export default new Component({
   d3EdgeById: {},
   d3NodeById: {},
   edgeById: {},
-  edges: [],
   nodeById: {},
-  nodes: [],
 
   // apis
   addEdges,
@@ -50,7 +49,9 @@ export default new Component({
     fetchDependencies({
       query: window.CONFIG,
     }).then((dependencies) => {
+      event.emit('update-nodes', dependencies.nodes);
       me.draw(dependencies);
+      window.pageLoading.hideLoading();
     });
   },
 }).render('#canvas');

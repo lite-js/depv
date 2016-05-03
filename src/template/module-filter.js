@@ -8,9 +8,9 @@ module.exports = function(data, helper) {
         __p += __j.call(arguments, '');
     };
     return (function(localeMsg) {
-        __p += '<div id="module-filter" class="pure-form">\n  <div class="query">\n    <input id="module-filter-query" class="pure-input-1" type="text" placeholder="' +
+        __p += '<li id="module-filter" class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">\n  <input id="module-filter-query" class="pure-menu-link" type="text" placeholder="' +
             ((__t = (localeMsg.module_filter_placeholder)) == null ? '' : __t) +
-            '">\n  </div>\n  <div class="pure-menu pure-menu-scrollable">\n    <ul id="module-filter-result" class="pure-menu-list"></ul>\n  </div>\n</div>\n';;
+            '">\n  <ul id="module-filter-result" class="pure-menu-children"></ul>\n</li>\n';;
         return __p;
     })(data.localeMsg);
 };

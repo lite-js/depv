@@ -27,20 +27,25 @@ export default function draw(data) {
     graph = me.graph = new dagreD3.graphlib.Graph().setGraph({});
 
     // setting graph
-    graph.graph().ranksep = 120;
+    graph.graph().ranksep = 180;
     graph.graph().nodesep = 40;
 
     me.processNodes(data.nodes);
     me.processEdges(data.edges);
+
+    me.nodeById = {};
     each(data.nodes, (node) => {
       me.nodeById[node.id] = node;
     });
+    me.edgeById = {};
     each(data.edges, (edge) => {
       me.edgeById[edge.id] = edge;
     });
+
     me.addNodes(data.nodes);
     me.addEdges(data.edges);
 
+    me.d3NodeById = {};
     renderer.createNodes((selection, g, shapes) => {
       const svgNodes = oldDrawNodes(selection, g, shapes);
       each(svgNodes[0], (u) => {
@@ -54,6 +59,7 @@ export default function draw(data) {
       return svgNodes;
     });
 
+    me.d3EdgeById = {};
     renderer.createEdgePaths((selection, g, arrows) => {
       const svgEdges = oldDrawEdges(selection, g, arrows);
       each(svgEdges[0], (e) => {
@@ -76,7 +82,7 @@ export default function draw(data) {
         `translate(${d3.event.translate})scale(${d3.event.scale})`
       );
     };
-    me.zoom = d3.behavior.zoom().scaleExtent([0.2, 2]).on('zoom', zoomed);
+    me.zoom = d3.behavior.zoom().scaleExtent([0.03, 3]).on('zoom', zoomed);
     d3Svg.call(me.zoom);
 
     me.styleNodes();
