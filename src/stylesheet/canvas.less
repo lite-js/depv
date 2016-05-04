@@ -1,3 +1,4 @@
+@node-highlight-color : #ef79b5;
 #canvas {
   background: #666;
   color: #fff;
@@ -45,6 +46,12 @@ g.node {
     font-size: 14px;
     padding: 4px;
     .limit-len
+  }
+  &.node-highlight {
+    rect {
+      stroke: @node-highlight-color;
+      stroke-width: 3;
+    }
   }
 }
 

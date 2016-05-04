@@ -8,7 +8,6 @@ import domStyle from 'zero-dom/style';
 import namedColor from 'zero-colors/named';
 const colorNames = keys(namedColor);
 
-
 const colorByType = {};
 const fontColorByType = {};
 

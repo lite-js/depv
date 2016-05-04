@@ -35,13 +35,14 @@ export default new Component({
       nodes,
       isModuleName,
       edges: me.metaData.edges,
-    }
+    };
   },
 
   reRender(query) {
     const me = this;
     const meta = me.filter(query);
     me.renderInnerDom(meta);
+    event.emit('highlight-nodes', me.queryDom.value);
     return me;
   },
 
@@ -57,6 +58,7 @@ export default new Component({
     event.emit('redraw-canvas', lang.extend(meta, {
       nodes,
     }));
+    event.emit('highlight-nodes', me.queryDom.value);
     return me;
   },
 
@@ -69,6 +71,7 @@ export default new Component({
     });
 
     const queryDom = domQuery.one('#module-filter-query');
+    me.queryDom = queryDom;
     domEvent.on(queryDom, 'input', () => {
       me.reRender(queryDom.value);
     });
