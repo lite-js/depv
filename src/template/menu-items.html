@@ -1,5 +1,5 @@
 <% helper.each(nodes, function(node) { %>
-  <li class="pure-menu-item" <% if (node.id) { %>data-id="<%= node.id %>"<% } %>>
+  <li class="pure-menu-item" <% if (node.id) { %>data-id="<%= node.id %>"<% } %> data-name="<%= node.name %>">
     <span class="pure-menu-link"><%= node.name %></span>
   </li>
 <% }); %>

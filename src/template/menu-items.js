@@ -16,7 +16,9 @@ module.exports = function(data, helper) {
                     ((__t = (node.id)) == null ? '' : __t) +
                     '"';
             }
-            __p += '>\n    <span class="pure-menu-link">' +
+            __p += ' data-name="' +
+                ((__t = (node.name)) == null ? '' : __t) +
+                '">\n    <span class="pure-menu-link">' +
                 ((__t = (node.name)) == null ? '' : __t) +
                 '</span>\n  </li>\n';
         });
