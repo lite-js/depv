@@ -1,10 +1,6 @@
 import declare from 'zero-oop/declare';
 import domStyle from 'zero-dom/style';
-import {
-  destroy,
-  place,
-  toDom,
-} from 'zero-dom/construct';
+import domConstruct from 'zero-dom/construct';
 import {
   extend,
   difference,
@@ -21,7 +17,7 @@ export default declare({
     const data = extend({}, me.data, {
       localeMsg: window.LOCALE_MSG, // add all locale messages to render templates
     });
-    me.outerDom = toDom(me.markup(data));
+    me.outerDom = domConstruct.toDom(me.markup(data));
     me.innerDom = me.outerDom;
     me.children = [];
     me.init();
@@ -55,11 +51,11 @@ export default declare({
     }
     parent = parent || window.document.body;
     if (parent.innerDom && parent.children) {
-      place(me.outerDom, parent.innerDom, position);
+      domConstruct.place(me.outerDom, parent.innerDom, position);
       me.parent = parent;
       parent.children.push(me);
     } else {
-      place(me.outerDom, parent, position);
+      domConstruct.place(me.outerDom, parent, position);
     }
     me.rendered = true;
     me.afterRendered();
@@ -70,7 +66,7 @@ export default declare({
     if (me.parent) {
       me.parent.children = difference(me.parent.children, [me]);
     }
-    destroy(me.outerDom);
+    domConstruct.destroy(me.outerDom);
     me = null;
   },
 });
