@@ -5,19 +5,20 @@ Object.defineProperty(exports, "__esModule", {
 });
 var devPort = exports.devPort = 1025;
 
-var scriptDirs = exports.scriptDirs = [// scripts working in node.js
-'bin', 'gulp', 'lib'];
+// scripts working in node.js
+var scriptDirs = exports.scriptDirs = ['bin', 'gulp', 'lib'];
 
-var templateDirs = exports.templateDirs = [// templates
-'lib', 'src'];
+// templates
+var templateDirs = exports.templateDirs = ['lib', 'src'];
 
-var lintingDirs = exports.lintingDirs = [// templates
-'bin', 'gulp', 'lib', 'src'];
+// for linting
+var lintingDirs = exports.lintingDirs = ['bin', 'gulp', 'lib', 'src'];
 
-var jsdocDirs = exports.jsdocDirs = [// templates
-'bin', 'gulp', 'lib', 'src'];
+// for jsdoc
+var jsdocDirs = exports.jsdocDirs = ['bin', 'gulp', 'lib', 'src'];
 
-var jsdocConfig = exports.jsdocConfig = { // for jsdoc
+// jsdoc configuration
+var jsdocConfig = exports.jsdocConfig = {
   tags: {
     allowUnknownTags: true
   },
@@ -27,7 +28,7 @@ var jsdocConfig = exports.jsdocConfig = { // for jsdoc
   },
   opts: {
     destination: './doc' },
-  // TO BE OVERRIDE
+  // this field is TO BE OVERRIDDEN
   plugins: ['plugins/markdown'],
   templates: {
     cleverLinks: true,

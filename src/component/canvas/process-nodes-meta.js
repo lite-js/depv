@@ -1,3 +1,10 @@
+/**
+ * canvas.processNodes(nodes) implement.
+ * @module component/canvas/process-nodes-meta
+ * @see module:component/canvas
+ * @see module:component/canvas/process-edges-meta
+ */
+
 import {
   each,
   extend,
@@ -25,15 +32,18 @@ function classnameByType(/* type */) {
 }
 
 function getType(/* node */) {
-  // TODO
+  // @TODO
   return '';
 }
 
 export default function preprocessNodes(nodes) {
   /**
    * pre-processing nodes.
-   * @param nodes {array} - nodes
+   * @function
+   * @param {array} nodes - nodes.
+   * @return {object} canvas - canvas context.
    */
+  const me = this;
   each(nodes, (node) => {
     extend(node, {
       classname: classnameByType(node.type),
@@ -45,4 +55,5 @@ export default function preprocessNodes(nodes) {
       type: node.type ? node.type : getType(node),
     });
   });
+  return me;
 }

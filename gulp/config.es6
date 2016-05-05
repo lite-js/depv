@@ -1,31 +1,36 @@
 export const devPort = 1025;
 
-export const scriptDirs = [ // scripts working in node.js
+// scripts working in node.js
+export const scriptDirs = [
   'bin',
   'gulp',
   'lib',
 ];
 
-export const templateDirs = [ // templates
+// templates
+export const templateDirs = [
   'lib',
   'src',
 ];
 
-export const lintingDirs = [ // templates
-  'bin',
-  'gulp',
-  'lib',
-  'src',
-];
-
-export const jsdocDirs = [ // templates
+// for linting
+export const lintingDirs = [
   'bin',
   'gulp',
   'lib',
   'src',
 ];
 
-export const jsdocConfig = { // for jsdoc
+// for jsdoc
+export const jsdocDirs = [
+  'bin',
+  'gulp',
+  'lib',
+  'src',
+];
+
+// jsdoc configuration
+export const jsdocConfig = {
   tags: {
     allowUnknownTags: true,
   },
@@ -34,7 +39,7 @@ export const jsdocConfig = { // for jsdoc
     excludePattern: '(^|\\/|\\\\)_',
   },
   opts: {
-    destination: './doc', // TO BE OVERRIDE
+    destination: './doc', // this field is TO BE OVERRIDDEN
   },
   plugins: [
     'plugins/markdown',

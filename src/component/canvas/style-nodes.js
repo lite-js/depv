@@ -1,3 +1,9 @@
+/**
+ * canvas.styleNodes() implement.
+ * @module component/canvas/style-nodes
+ * @see module:component/canvas
+ * @see module:component/canvas/style-edges
+ */
 import {
   forIn,
   keys,
@@ -12,6 +18,12 @@ const colorByType = {};
 const fontColorByType = {};
 
 function getSumOfStringCharCodes(str) {
+  /**
+   * sum of string char codes
+   * @function
+   * @param {string} str - string to count.
+   * @return {string} color - color.
+   */
   const len = str.length;
   let sum = 0;
   for (let i = 0; i < len; i++) {
@@ -21,6 +33,12 @@ function getSumOfStringCharCodes(str) {
 }
 
 function getColorByType(type) {
+  /**
+   * get color by type.
+   * @function
+   * @param {string} type - type of node.
+   * @return {string} color - color.
+   */
   if (colorByType[type]) {
     return colorByType[type];
   }
@@ -31,6 +49,12 @@ function getColorByType(type) {
 }
 
 function getFontColorByType(type) {
+  /**
+   * get font color by type.
+   * @function
+   * @param {string} type - type of node.
+   * @return {string} color - font color.
+   */
   if (fontColorByType[type]) {
     return fontColorByType[type];
   }
@@ -50,6 +74,8 @@ function getFontColorByType(type) {
 export default function stylingNodes() {
   /**
    * styling nodes.
+   * @function
+   * @return {object} canvas - canvas context.
    */
   const me = this;
 

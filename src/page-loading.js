@@ -93,9 +93,18 @@ const pageLoading = window.pageLoading = {
 
   showLoading() {
     ensureLoadingElement(() => {
-      overlayElement.style.display = '';
+      overlayElement.style.display = 'block';
     });
     return pageLoading;
+  },
+
+  executeDuringLoading(callback) {
+    // FIXME there is an animation here in loading element
+    pageLoading.showLoading();
+    setTimeout(() => {
+      callback();
+      pageLoading.hideLoading();
+    }, 10);
   },
 
   hideLoading() {

@@ -1,3 +1,10 @@
+/**
+ * canvas.processEdges(edges) implement.
+ * @module component/canvas/process-edges-meta
+ * @see module:component/canvas
+ * @see module:component/canvas/process-nodes-meta
+ */
+
 import {
   each,
   extend,
@@ -6,8 +13,11 @@ import {
 export default function preprocessEdges(edges) {
   /**
    * pre-processing edges.
-   * @param edges {array} - edges
+   * @function
+   * @param {array} edges - edges.
+   * @return {object} canvas - canvas context.
    */
+  const me = this;
   each(edges, (edge) => {
     extend(edge, {
       id: edge.id || `${edge.source}TO${edge.target}`,
@@ -15,4 +25,5 @@ export default function preprocessEdges(edges) {
       arrowheadStyle: 'fill: #999',
     });
   });
+  return me;
 }

@@ -1,3 +1,14 @@
+/**
+ * canvas.draw(data) implement.
+ * @module component/canvas/draw
+ * @see module:component/canvas
+ * @see module:component/canvas/add-edges
+ * @see module:component/canvas/add-nodes
+ * @see module:component/canvas/process-edges-meta
+ * @see module:component/canvas/process-nodes-meta
+ * @see module:component/canvas/transition
+ */
+
 import d3 from 'd3';
 import dagreD3 from 'dagre-d3';
 import domStyle from 'zero-dom/style';
@@ -10,7 +21,9 @@ import {
 export default function draw(data) {
   /**
    * drawing the graph.
-   * @param data {object} - data of dependencies.
+   * @function
+   * @param {object} data - data of dependencies.
+   * @return {object} canvas - canvas context.
    */
   const me = this;
   const d3Svg = me.d3Svg = d3.select('svg#graph');
@@ -19,7 +32,7 @@ export default function draw(data) {
   const oldDrawEdges = renderer.createEdgePaths();
 
   // @FIXME
-  d3Svg.attr('height', domStyle.get(me.outerDom, 'height'));
+  d3Svg.attr('height', domStyle.get(me.canvasDom, 'height'));
 
   if (data && isArray(data.nodes) && isArray(data.edges)) {
     const graph = me.graph = new dagreD3.graphlib.Graph().setGraph({});
@@ -70,6 +83,7 @@ export default function draw(data) {
       return svgEdges;
     });
 
+    // avoiding layout thrashing
     const d3G = me.d3G = d3Svg.select('g');
     d3G.attr('transform', 'translate(0, 0)scale(1)');
 
@@ -84,6 +98,7 @@ export default function draw(data) {
     me.styleNodes();
     me.styleEdges();
 
+    // FIXME this is async
     me.transition(extend({
       duration: 200,
     }, me.getCenterPoint()));

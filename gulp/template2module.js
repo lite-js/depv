@@ -54,6 +54,7 @@ function renderTemplates() {
 
     try {
       _gulpUtil2.default.log(file.path);
+      // @TODO add svg sprite file as needed, instead of putting the whole evil-icons svg file
       var content = underscoreEngine.render((0, _evilIcons.iconizeHtml)(file.contents.toString('utf8')), file.path, 'commonjs');
       file.contents = new Buffer(content);
     } catch (err) {
@@ -64,8 +65,6 @@ function renderTemplates() {
     return cb();
   });
 }
-
-// TODO add svg sprite file into HTML if needed
 
 (0, _zeroLang.each)(_config.templateDirs, function (dir) {
   _gulp2.default.task((0, _sprintf2.default)('template2module-%s', dir), function () {

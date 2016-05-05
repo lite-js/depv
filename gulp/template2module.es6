@@ -35,6 +35,7 @@ function renderTemplates() {
 
     try {
       gutil.log(file.path);
+      // @TODO add svg sprite file as needed, instead of putting the whole evil-icons svg file
       const content = underscoreEngine.render(iconizeHtml(file.contents.toString('utf8')), file.path, 'commonjs');
       file.contents = new Buffer(content);
     } catch (err) {
@@ -45,8 +46,6 @@ function renderTemplates() {
     return cb();
   });
 }
-
-// TODO add svg sprite file into HTML if needed
 
 each(templateDirs, (dir) => {
   gulp.task(sprintf('template2module-%s', dir), () =>

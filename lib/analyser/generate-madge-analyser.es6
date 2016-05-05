@@ -62,9 +62,9 @@ export default (format) => (config, callback) => {
     });
 
     callback({
-      nodes,
-      edges,
       circles: circular.getArray(),
+      edges,
+      nodes,
     });
   } catch (e) {
     callback({});
