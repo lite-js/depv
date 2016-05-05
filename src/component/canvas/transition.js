@@ -1,3 +1,9 @@
+/**
+ * canvas.transition(option) implement.
+ * @module component/canvas/transition
+ * @see module:component/canvas
+ */
+
 import {
   every,
   isNumber,
@@ -6,10 +12,12 @@ import {
 export default function transition(option) {
   /**
    * graph transition.
-   * @param option.x {number} - x
-   * @param option.y {number} - y
-   * @param option.scale {number} - scale
-   * @param option.duration {number} - duration
+   * @function
+   * @param {number} option.x - x.
+   * @param {number} option.y - y.
+   * @param {number} option.scale - scale.
+   * @param {number} option.duration - duration.
+   * @return {object} canvas - canvas context.
    */
   const me = this;
   const x = option.x;
@@ -17,6 +25,7 @@ export default function transition(option) {
   const scale = option.scale || 1;
   const duration = option.duration || 300;
 
+  // ensuring all params to be numbers
   const isAllNumbers = every([
     x,
     y,

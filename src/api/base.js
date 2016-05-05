@@ -1,3 +1,9 @@
+/**
+ * base module for ajax apis.
+ * @module api/base
+ * @see module:api/fetch-dependencies
+ */
+
 import qs from 'zero-encoding/querystring';
 import {
   each,
@@ -8,6 +14,12 @@ import {
 } from 'zero-lang';
 
 function isSuccess(response) {
+  /**
+   * is ajax request success.
+   * @function
+   * @param {response} response - http response.
+   * @return {boolean} true or false.
+   */
   const status = response.status;
   return (status >= 200 && status < 300) ||
     (status === 304) || (!status);

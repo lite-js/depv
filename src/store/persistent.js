@@ -1,3 +1,9 @@
+/**
+ * Store instance for storing data persistently.
+ * @module store/persistent
+ * @see module:store/base
+ */
+
 import lang from 'zero-lang';
 
 import Store from './base';
@@ -26,6 +32,10 @@ export default new Store({
 
   set(name, value) {
     this.storage[name] = JSON.stringify(value);
+  },
+
+  clear() {
+    this.storage.clear();
   },
 
   del(name) {

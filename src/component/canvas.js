@@ -1,3 +1,29 @@
+/**
+ * canvas component.
+ * @module component/canvas
+ * @see module:api/fetch-dependencies
+ * @see module:component/base
+ * @see module:component/canvas
+ * @see module:component/canvas/add-edges
+ * @see module:component/canvas/add-nodes
+ * @see module:component/canvas/draw
+ * @see module:component/canvas/get-center-point
+ * @see module:component/canvas/get-node-id
+ * @see module:component/canvas/highlight-nodes
+ * @see module:component/canvas/highlight-nodes
+ * @see module:component/canvas/process-edges-meta
+ * @see module:component/canvas/process-nodes-meta
+ * @see module:component/canvas/query-d3-nodes
+ * @see module:component/canvas/query-nodes
+ * @see module:component/canvas/style-edges
+ * @see module:component/canvas/style-nodes
+ * @see module:component/canvas/transition
+ * @see module:component/canvas/unhighlight-nodes
+ * @see module:event/global
+ * @see module:store/dependencies
+ * @see module:template/canvas
+ */
+
 import domQuery from 'zero-dom/query';
 
 import Component from './base';
@@ -30,6 +56,7 @@ export default new Component({
   NS: {
     node: '__node_',
   },
+
   // properties
   d3EdgeById: {},
   d3NodeById: {},
@@ -55,8 +82,12 @@ export default new Component({
 
   // aop
   afterRendered() {
+    /**
+     * cache dom elements, draw graph, bind dom events, global events, etc.
+     * @function
+     */
     const me = this;
-    me.outerDom = domQuery.one('#canvas');
+    me.canvasDom = domQuery.one('#canvas');
 
     fetchDependencies({
       query: window.CONFIG,
@@ -72,6 +103,7 @@ export default new Component({
     event.on('redraw-canvas', (data) => {
       me.draw(data);
     });
+
     event.on('highlight-nodes', (query) => {
       me.unhighlightNodes();
       me.highlightNodes(query);
