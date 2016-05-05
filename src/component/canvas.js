@@ -20,6 +20,7 @@
  * @see module:component/canvas/transition
  * @see module:component/canvas/unhighlight-nodes
  * @see module:event/global
+ * @see module:page-loading
  * @see module:store/dependencies
  * @see module:template/canvas
  */
@@ -101,7 +102,9 @@ export default new Component({
     });
 
     event.on('redraw-canvas', (data) => {
-      me.draw(data);
+      window.pageLoading.executeDuringLoading(() => {
+        me.draw(data);
+      });
     });
 
     event.on('highlight-nodes', (query) => {

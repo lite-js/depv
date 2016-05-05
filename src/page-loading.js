@@ -93,9 +93,18 @@ const pageLoading = window.pageLoading = {
 
   showLoading() {
     ensureLoadingElement(() => {
-      overlayElement.style.display = '';
+      overlayElement.style.display = 'block';
     });
     return pageLoading;
+  },
+
+  executeDuringLoading(callback) {
+    // FIXME
+    pageLoading.showLoading();
+    setTimeout(() => {
+      callback();
+      pageLoading.hideLoading();
+    }, 5); // chrome will merge dom operates into one, so if no io breaks, it is necessary to call setTimeout()
   },
 
   hideLoading() {
