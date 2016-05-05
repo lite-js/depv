@@ -52,7 +52,7 @@ export default (format) => (config, callback) => {
     });
     forIn(tree, (deps, name) => {
       each(deps, (dep) => {
-        dep = dep.replace(/\.\.\//g, '').replace(/\.\//g, '');
+        dep = dep.replace(/\.\.\//g, '').replace(/\.\//g, '').replace('node_modules/', '');
         addNode(dep);
         edges.push({
           source: dep,
