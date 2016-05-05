@@ -2,9 +2,11 @@ import {
   each,
 } from 'zero-lang';
 
-export default (moduleName, dependencies) => {
+import dependenciesStore from '../store/dependencies';
+
+export default (moduleName) => {
   const moduleNames = [moduleName];
-  each(dependencies.edges, (edge) => {
+  each(dependenciesStore.get('edges'), (edge) => {
     if (edge.source === moduleName) {
       moduleNames.push(edge.target);
     }

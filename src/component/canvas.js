@@ -3,6 +3,7 @@ import domQuery from 'zero-dom/query';
 import Component from './base';
 import fetchDependencies from '../api/fetch-dependencies';
 import event from '../event/global';
+import dependenciesStore from '../store/dependencies';
 
 // api implements
 import addEdges from './canvas/add-edges';
@@ -60,7 +61,10 @@ export default new Component({
     fetchDependencies({
       query: window.CONFIG,
     }).then((dependencies) => {
-      event.emit('update-meta-data', dependencies);
+      dependenciesStore.set('nodes', dependencies.nodes);
+      dependenciesStore.set('edges', dependencies.edges);
+      dependenciesStore.set('dependencies', dependencies);
+      event.emit('update-module-list');
       me.draw(dependencies);
       window.pageLoading.hideLoading();
     });

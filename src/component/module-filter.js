@@ -8,6 +8,7 @@ import event from '../event/global';
 import markup from '../template/module-filter';
 import menuItems from '../template/menu-items';
 import getRelatedModules from '../util/get-related-modules';
+import dependenciesStore from '../store/dependencies';
 
 export default new Component({
   markup,
@@ -19,11 +20,10 @@ export default new Component({
   },
 
   filter(query) {
-    const me = this;
     let isModuleName = false;
     const nodes = [];
 
-    lang.each(me.metaData.nodes, (node) => {
+    lang.each(dependenciesStore.get('nodes'), (node) => {
       if (node.name.indexOf(query) > -1) {
         nodes.push(node);
       }
@@ -34,7 +34,7 @@ export default new Component({
     return {
       nodes,
       isModuleName,
-      edges: me.metaData.edges,
+      edges: dependenciesStore.get('edges'),
     };
   },
 
@@ -51,7 +51,7 @@ export default new Component({
     const meta = me.filter(query);
     let nodes = [];
     if (meta.isModuleName) {
-      nodes = getRelatedModules(query, me.metaData);
+      nodes = getRelatedModules(query);
     } else {
       nodes = meta.nodes;
     }
@@ -65,19 +65,21 @@ export default new Component({
   afterRendered() {
     const me = this;
     me.innerDom = domQuery.one('#module-filter-result');
-    event.on('update-meta-data', (dependencies) => {
-      me.metaData = dependencies;
-      me.renderInnerDom(dependencies);
+    event.on('update-module-list', () => {
+      me.renderInnerDom(dependenciesStore.get('dependencies'));
     });
 
     const queryDom = domQuery.one('#module-filter-query');
     me.queryDom = queryDom;
+
     domEvent.on(queryDom, 'input', () => {
       me.reRender(queryDom.value);
     });
+
     domEvent.on(queryDom, 'change', () => {
       me.reDraw(queryDom.value);
     });
+
     domEvent.on(me.innerDom, 'click', '.pure-menu-item', (e) => {
       const delegateTarget = e.delegateTarget;
       queryDom.value = domData.get(delegateTarget, 'name');
