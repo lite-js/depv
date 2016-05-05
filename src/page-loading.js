@@ -99,12 +99,12 @@ const pageLoading = window.pageLoading = {
   },
 
   executeDuringLoading(callback) {
-    // FIXME
+    // FIXME there is an animation here in loading element
     pageLoading.showLoading();
     setTimeout(() => {
       callback();
       pageLoading.hideLoading();
-    }, 5); // chrome will merge dom operates into one, so if no io breaks, it is necessary to call setTimeout()
+    }, 10);
   },
 
   hideLoading() {

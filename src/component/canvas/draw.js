@@ -98,6 +98,7 @@ export default function draw(data) {
     me.styleNodes();
     me.styleEdges();
 
+    // FIXME this is async
     me.transition(extend({
       duration: 200,
     }, me.getCenterPoint()));
