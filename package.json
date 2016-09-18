@@ -6,7 +6,7 @@
   "description": "the dependency visualizer",
   "homepage": "https://github.com/depv/depv",
   "main": "lib/index.js",
-  "version": "0.0.20160301",
+  "version": "0.1.0",
   "keywords": [
     "dependency tree",
     "dependency",
@@ -32,9 +32,10 @@
     "evil-icons": "^1.8.0",
     "get-port": "^2.1.0",
     "is-url": "^1.2.1",
+    "jquery": "^3.1.0",
     "lesshat": "^3.0.2",
     "madge": "^0.5.3",
-    "open": "0.0.5",
+    "open": "^0.0.5",
     "os-hostname": "^1.1.3",
     "purecss": "^0.6.0",
     "request-promise": "^3.0.0",
@@ -42,16 +43,7 @@
     "urlrouter": "^0.5.4",
     "walk": "^2.3.9",
     "yaml": "^0.3.0",
-    "zero-async": "0.0.20151202",
-    "zero-colors": "0.0.20160501",
-    "zero-dom": "0.0.20160220",
-    "zero-encoding": "0.0.20151202",
-    "zero-events": "0.0.20151202",
-    "zero-fmt": "0.0.20151202",
-    "zero-lang": "0.0.20151202",
-    "zero-net": "0.0.20151202",
-    "zero-oop": "0.0.20151202",
-    "zero-routing": "0.0.20151202"
+    "zero-lang": "^0.1.3"
   },
   "devDependencies": {
     "babel-cli": "^6.7.7",
