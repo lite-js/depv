@@ -11,6 +11,7 @@
         "ignoreUrls": true
       }
     ],
-    "no-param-reassign": 0
+    "no-param-reassign": 0,
+    "no-mixed-operators": 0
   }
 }
