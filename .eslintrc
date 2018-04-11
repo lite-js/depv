@@ -2,6 +2,12 @@
   "extends": [
     "eslint-config-airbnb"
   ],
+  "globals": {
+    "window": true,
+    "$": true,
+    "document": true,
+    "module": true
+  },
   "rules": {
     "max-len": [
       "error",

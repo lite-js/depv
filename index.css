@@ -1,4 +1,5 @@
 /* global */
+
 html, body {
   padding: 0;
   margin: 0;
@@ -6,19 +7,46 @@ html, body {
   height: 100%;
   overflow: hidden;
 }
+
 html, body, #loading {
   background-image: radial-gradient(circle, #333, #111);
 }
 
+/* svg-icon */
+
+.svg-icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+
+.svg-icon.active {
+  fill: white;
+}
+
+/* toolbar */
+
+.btn-toolbar {
+  display: inline-block;
+  position: fixed;
+}
+
+.btn-group .btn {
+  border-radius: 0;
+}
+
 /* canvas */
+
 .canvas {
   position: absolute;
 }
+
 #interacting-canvas {
   pointer-events: none;
 }
 
 /* loading */
+
 #loading {
   position: absolute;
   width: 100%;
@@ -87,22 +115,22 @@ html, body, #loading {
 
 @-webkit-keyframes sk-cubeGridScaleDelay {
   0%, 70%, 100% {
-      -webkit-transform: scale3D(1, 1, 1);
-      transform: scale3D(1, 1, 1);
+    -webkit-transform: scale3D(1, 1, 1);
+    transform: scale3D(1, 1, 1);
   }
   35% {
-      -webkit-transform: scale3D(0, 0, 1);
-      transform: scale3D(0, 0, 1);
+    -webkit-transform: scale3D(0, 0, 1);
+    transform: scale3D(0, 0, 1);
   }
 }
 
 @keyframes sk-cubeGridScaleDelay {
   0%, 70%, 100% {
-      -webkit-transform: scale3D(1, 1, 1);
-      transform: scale3D(1, 1, 1);
+    -webkit-transform: scale3D(1, 1, 1);
+    transform: scale3D(1, 1, 1);
   }
   35% {
-      -webkit-transform: scale3D(0, 0, 1);
-      transform: scale3D(0, 0, 1);
+    -webkit-transform: scale3D(0, 0, 1);
+    transform: scale3D(0, 0, 1);
   }
 }

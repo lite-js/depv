@@ -1,5 +1,10 @@
 const commander = require('commander');
-const { app, BrowserWindow } = require('electron');
+const madge = require('madge');
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+} = require('electron');
 const { resolve } = require('path');
 const windowBounds = require('./lib/window-bounds')(resolve(app.getPath('userData'), './depv-config.json'));
 const pkg = require('./package.json');
@@ -7,13 +12,30 @@ const pkg = require('./package.json');
 // opts
 commander
   .version(pkg.version)
-  .usage('[options] <entry file>')
+  .usage('[options] <entry>')
   .option('-d, --debug', 'debug mode')
   .parse(process.argv);
 
-// const entry = commander.args[0];
+const entry = commander.args[0];
 
+if (!entry) {
+  console.error('entry is not defined!');
+  process.exit();
+}
+
+let dependencies = null;
 let win;
+
+madge(entry, {
+  includeNpm: true,
+}).then((res) => {
+  dependencies = res.obj();
+  console.log(dependencies);
+});
+
+ipcMain.on('get-dependencies', (evt) => {
+  evt.sender.send('dependencies', dependencies);
+});
 
 function createWindow() {
   win = new BrowserWindow(windowBounds.get('main'));

@@ -8,10 +8,41 @@
   <title>Depv</title>
   <link rel="stylesheet" href="node_modules/bootstrap//dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="node_modules/bootstrap//dist/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="renderer/index.css">
+  <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
+  <!-- svg icons -->
+  <?xml version="1.0" encoding="utf-8"?>
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="width:0;height:0;position:absolute;overflow:hidden;">
+    <defs>
+      <symbol viewBox="0 0 40 40" aria-labelledby="alasi-windows-cursor-move-title" id="si-windows-cursor-move">
+        <title id="alasi-windows-cursor-move-title">icon cursor-move</title>
+        <path d="M7 18h11V7h-5l7-7 7 7h-5v11h11v-5l7 7-7 7v-5H22v11h5l-7 7-7-7h5V22H7v5l-7-7 7-7v5z" />
+      </symbol>
+      <symbol viewBox="0 0 40 28" aria-labelledby="buysi-windows-vector-rectangle-title" id="si-windows-vector-rectangle">
+        <title id="buysi-windows-vector-rectangle-title">icon vector-rectangle
+        </title>
+        <path d="M5 4v1H4v18h1v1h30v-1h1V5h-1V4H5zm35 19v5h-5v-1H5v1H0v-5h1V5H0V0h5v1h30V0h5v5h-1v18h1zM1 1v3h3V1H1zm35 0v3h3V1h-3zM1 24v3h3v-3H1zm35 0v3h3v-3h-3z"
+        />
+      </symbol>
+    </defs>
+  </svg>
+  <!-- toolbar -->
+  <div class="btn-toolbar">
+      <div class="btn-group">
+          <button type="button" class="btn btn-secondary">
+              <svg class="svg-icon active" data-mode="dragging">
+                  <use xlink:href="#si-windows-cursor-move"></use>
+              </svg>
+          </button>
+          <button type="button" class="btn btn-secondary">
+              <svg class="svg-icon" data-mode="select">
+                  <use xlink:href="#si-windows-vector-rectangle"></use>
+              </svg>
+          </button>
+      </div>
+  </div>
   <!-- canvas -->
   <canvas class="canvas" id="edges-canvas"></canvas>
   <canvas class="canvas" id="canvas"></canvas>
@@ -37,7 +68,7 @@
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- Insert this line after script imports -->
   <script>if (window.module) module = window.module;</script>
-  <script src="renderer/index.js"></script>
+  <script src="index.js"></script>
 </body>
 
 </html>
